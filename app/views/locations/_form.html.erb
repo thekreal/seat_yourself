@@ -1,0 +1,39 @@
+<%= form_for [@restaurant, @location], html: { class: "form-container"} do |f| %>
+
+  <div class="form-field">
+    <%= f.label :address, class: "form-label", for: "address"  %>
+    <div class="form-controls">
+      <%= f.text_area :address, id: "address", class: "form-input" %>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <%= f.label :number_of_seats, class: "form-label", for: "number_of_seats"  %>
+    <div class="form-controls">
+      <%= f.number_field :number_of_seats, id: "number_of_seats", class: "form-input" %>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <%= f.label :open_at, class: "form-label", for: "open_at"  %>
+    <div class="form-controls">
+      <%= f.time_field :open_at, id: "open_at", class: "form-input" %>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <%= f.label :close_at, class: "form-label", for: "close_at"  %>
+    <div class="form-controls">
+      <%= f.time_field :close_at, id: "close_at", class: "form-input" %>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <div class="form-label"></div>
+    <div class="form-controls">
+      <%= f.submit yield(:page_title), class: "submit-button" %>
+    </div>
+  </div>
+
+
+<% end %>
