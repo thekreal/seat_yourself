@@ -1,4 +1,5 @@
 class RestaurantsController < ApplicationController
+  before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
 
   def index
     @restaurants = Restaurant.all
@@ -16,6 +17,7 @@ class RestaurantsController < ApplicationController
   def create
     @restaurant = Restaurant.new(new_restaurant_params)
     if @restaurant.save
+      flash[:success] = "Restaurant created successfully"
       redirect_to @restaurant
     else
       render :new
@@ -23,13 +25,11 @@ class RestaurantsController < ApplicationController
   end
 
   def edit
-    @restaurant = Restaurant.find(params[:id])
   end
 
   def update
-    @restaurant = Restaurant.find(params[:id])
-    if @restaurant.update(restaurant_params)
-      flash[:info] = "Success"
+    if @restaurant.update(edit_restaurant_params)
+      flash[:success] = "Restaurant updated successfully"
       redirect_to @restaurant
     else
       render :edit
@@ -37,11 +37,16 @@ class RestaurantsController < ApplicationController
   end
 
   def destroy
+    if @restaurant.destroy
+      flash[:success] = "Restaurant removed successfully"
+      redirect_to restaurants_path
+    end
   end
 
 private
 
   def set_restaurant
+    @restaurant = Restaurant.find(params[:id])
   end
 
   def new_restaurant_params
