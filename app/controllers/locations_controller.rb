@@ -1,5 +1,5 @@
 class LocationsController < ApplicationController
-  before_action :set_restaurant, only: [:index, :new, :create]
+  before_action :set_restaurant
   before_action :set_location, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -29,17 +29,17 @@ class LocationsController < ApplicationController
   def update
     if @location.update(location_params)
       flash[:success] = "Location updated successfully"
-      redirect_to @location
+      redirect_to [@restaurant, @location]
     else
       render :edit
     end
   end
 
   def destroy
-    restaurant = @location.restaurant
+
     if @location.destroy
       flash[:success] = "Location removed successfully"
-      redirect_to restaurant
+      redirect_to @restaurant
     end
   end
 
