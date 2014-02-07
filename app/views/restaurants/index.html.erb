@@ -1,2 +1,9 @@
 <% provide :page_title, "Restaurants" %>
 
+<h1>Restaurants</h1>
+
+<% @restaurants.each do |restaurant|%>
+
+	<h3><%= restaurant.name.capitalize %> </h3>
+	<p><%= restaurant.description %> </p>
+	<% end %>
