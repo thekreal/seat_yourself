@@ -1,11 +1,14 @@
 class ReservationsController <ApplicationController
+
+  before_action :set_restaurant
+  before_action :set_location
+
   def new
-    @location = Location.find(params[:location_id])
     @reservation = @location.reservations.new
   end
 
   def create
-    @reservation = Reservation.new(reservation_params)
+    @reservation = @location.reservations.new(reservation_params)
     if @reservation.save
       redirect_to root_url
     else
@@ -38,4 +41,13 @@ class ReservationsController <ApplicationController
   def reservation_params
     params.require(:reservation).permit(:time,:number_of_people)
   end
+
+  def set_location
+    @location = Location.find(params[:location_id])
+  end
+
+  def set_restaurant
+    @restaurant = Restaurant.find(params[:restaurant_id])
+  end
+
 end
