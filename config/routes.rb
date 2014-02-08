@@ -1,12 +1,12 @@
 SeatYourself::Application.routes.draw do
   root  'home#welcome'
 
+  resources :users
 
   resources :restaurants do
-    resources :locations do
-    	resources :reservations
-  	end
+    resources :locations
   end
 
+  resources :reservations
 
 end
