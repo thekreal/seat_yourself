@@ -1,0 +1,5 @@
+<% flash.each do |type, message| %>
+    <%= content_tag :div, class: "flash-#{type}" do %>
+        <%= simple_format message, sanitize: true %>
+    <% end %>
+<% end %>

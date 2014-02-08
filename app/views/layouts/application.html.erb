@@ -8,6 +8,8 @@
 </head>
 <body>
 
+  <%= render 'alerts/flash_message' if flash.any? %>
+
   <%= yield %>
 
   <%= params %>
