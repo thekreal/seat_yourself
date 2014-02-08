@@ -1,5 +1,6 @@
 class Location < ActiveRecord::Base
   belongs_to :restaurant
+  has_many :reservations
 
   validates :address, presence: true
 

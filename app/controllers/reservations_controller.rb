@@ -1,7 +1,7 @@
 class ReservationsController <ApplicationController
   def new
-    @reservation = Reservation.new
     @location = Location.find(params[:location_id])
+    @reservation = @location.reservations.new
   end
 
   def create
@@ -36,6 +36,6 @@ class ReservationsController <ApplicationController
 
   private
   def reservation_params
-    params.require(:reservation).permit(:time,:party_size)
+    params.require(:reservation).permit(:time,:number_of_people)
   end
 end
