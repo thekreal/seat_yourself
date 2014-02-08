@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :self_action?, except: [:new, :create]
+  before_action :action_verification, except: [:new, :create]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def show
@@ -43,9 +43,12 @@ class UsersController < ApplicationController
 
 private
 
-  def self_action?
-    unless signed_in? and current_user = @user
-      flash[:warning] = "You are not authorized to view other people's profile"
+  def action_verification
+    if !signed_in?
+      flash[:warning] = "You are not signed in. Please signin first"
+      redirect_to :signin
+    elsif !current_user?(@user)
+      flash[:warning] = "You are not authorized!"
       redirect_to current_user
     end
   end

@@ -3,6 +3,6 @@ class ApplicationController < ActionController::Base
 
   include Session
 
-  helper_method :current_user, :signed_in?
+  helper_method :current_user, :current_user?, :signed_in?
 
 end

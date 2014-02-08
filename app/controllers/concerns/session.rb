@@ -27,4 +27,22 @@ private
     !current_user.nil?
   end
 
+  def signin_action
+    unless signed_in?
+      flash[:warning] = "Please sign in first"
+      redirect_to :signin
+    end
+  end
+
+  def current_user?(user)
+    current_user == user
+  end
+
+  def self_action
+    unless current_user?(@user)
+      flash[:warning] = "You are not authorized to view other people's profile"
+      redirect_to current_user
+    end
+  end
+
 end

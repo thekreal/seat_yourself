@@ -1,6 +1,6 @@
 module ApplicationHelper
 
-  SITE_NAME = "SEAT URSELF"
+  SITE_NAME = "SEAT UR SELF"
 
   def titler(page_title)
     page_title.empty? ? site_name : "#{site_name} | #{page_title}"
