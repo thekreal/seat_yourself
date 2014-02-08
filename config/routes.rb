@@ -9,9 +9,11 @@ SeatYourself::Application.routes.draw do
   resources :sessions,            only: [:create]
 
   resources :restaurants do
-    resources :locations
+    resources :locations do
+      resources :reservations
+    end
   end
 
-  resources :reservations
+
 
 end
