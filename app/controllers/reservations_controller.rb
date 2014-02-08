@@ -1,10 +1,14 @@
-class ReservationsController <reservapplicationController
+class ReservationsController <ApplicationController
+
+  before_action :set_restaurant
+  before_action :set_location
+
   def new
-    @reservation = Reservation.new
+    @reservation = @location.reservations.new
   end
 
   def create
-    @reservation = Reservation.new(reservation_params)
+    @reservation = @location.reservations.new(reservation_params)
     if @reservation.save
       redirect_to root_url
     else
@@ -35,7 +39,15 @@ class ReservationsController <reservapplicationController
 
   private
   def reservation_params
-    params.require(:reservation).permit(:time,:party_size)
+    params.require(:reservation).permit(:time,:number_of_people)
   end
+
+  def set_location
+    @location = Location.find(params[:location_id])
+  end
+
+  def set_restaurant
+    @restaurant = Restaurant.find(params[:restaurant_id])
+  end
+
 end
-reserva

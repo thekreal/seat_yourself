@@ -1,0 +1,24 @@
+<%= form_for [@restaurant, @location, @reservation], html: { class: "form-container"} do |f| %>
+
+	<div class="form-field">
+    <%= f.label :time, class: "form-label", for: "time"  %>
+    <div class="form-controls">
+      <%= f.time_field :time, id: "time", class: "form-input" %>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <%= f.label :number_of_people, class: "form-label", for: "number_of_people"  %>
+    <div class="form-controls">
+      <%= f.number_field :number_of_people, id: "number_of_people", class: "form-input" %>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <div class="form-label"></div>
+    <div class="form-controls">
+      <%= f.submit yield(:page_title), class: "submit-button" %>
+    </div>
+  </div>
+
+<% end %>
