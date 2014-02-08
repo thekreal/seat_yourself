@@ -1,5 +1,6 @@
 <%= form_for @reservation, html: { class: "form-container"} do |f| %>
   <%= render 'alerts/error_message', object: @reservation %>
+
 	<div class="form-field">
     <%= f.label :time, class: "form-label", for: "time"  %>
     <div class="form-controls">

@@ -1,9 +1,6 @@
 class UsersController < ApplicationController
+  before_action :self_action?, except: [:new, :create]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
-  def index
-    @users = User.all
-  end
 
   def show
   end
@@ -45,6 +42,13 @@ class UsersController < ApplicationController
   end
 
 private
+
+  def self_action?
+    unless signed_in? and current_user = @user
+      flash[:warning] = "You are not authorized to view other people's profile"
+      redirect_to current_user
+    end
+  end
 
   def set_user
     @user = User.find(params[:id])
