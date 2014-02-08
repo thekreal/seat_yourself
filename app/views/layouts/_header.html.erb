@@ -1,11 +1,14 @@
 <header id="site-menu">
   <a href="/" id="site-logo"><%= site_name %></a>
 
+  <div id="menu">
   <% if signed_in? %>
-    <%= link_to image_tag(current_user.gravatar(50)), current_user %>
+    <%= link_to image_tag(current_user.gravatar(60)), current_user %>
+    <%= link_to "SIGN OUT", :signout, id: "signout" %>
   <% else %>
-    <%= link_to 'Sign In', :signin, class: "site-menu-control" %>
-    <%= link_to 'Sign Up', :signup, class: "site-menu-control" %>
+    <%= link_to 'Sign In', :signin, id: "signin", class: "btn" %>
+    <%= link_to 'Sign Up', :signup, id: "signup", class: "btn" %>
   <% end %>
+  </div>
 
 </header>
