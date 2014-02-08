@@ -1,2 +1,12 @@
 <%= @restaurant.inspect %>
 <%= @restaurant.locations.first.inspect %>
+
+<h1><%= @restaurant.name %></h1>
+	<p> <%= @restaurant.description%> </p>
+
+<h3> Locations </h3>
+		<% @locations.each do |location| %>
+			<p><%= link_to location.address, restaurant_location_path(params[:id],location.id) %><p>
+			<p>Open from <%=location.open_at%> till <%= location.close_at %></p>
+		<% end %>
+
