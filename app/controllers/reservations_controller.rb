@@ -1,6 +1,7 @@
 class ReservationsController <ApplicationController
   def new
     @reservation = Reservation.new
+    @location = Location.find(params[:location_id])
   end
 
   def create
