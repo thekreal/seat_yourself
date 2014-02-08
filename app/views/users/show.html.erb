@@ -1,0 +1,10 @@
+<% provide :page_title, "#{@user.name}'s Profile".html_safe %>
+
+<div class="user-profile">
+  <div class="name"><%= @user.name %></div>
+  <div class="gravatar"><%= image_tag @user.gravatar(50) %></div>
+  <div class="email"><%= @user.email %></div>
+  <div class="joined"><%= since(@user.created_at) %></div>
+
+  <%= (link_to 'Edit', edit_user_path(@user), class: "control") %>
+</div>
