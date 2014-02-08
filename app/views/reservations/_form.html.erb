@@ -1,7 +1,6 @@
-<%= form_for @reservation, html: { class: "form-container"} do |f| %>
-  <%= render 'alerts/error_message', object: @reservation %>
+<%= form_for [@location.restaurant, @location, @reservation], html: { class: "form-container"} do |f| %>
 
-	<div class="form-field">
+  <div class="form-field">
     <%= f.label :time, class: "form-label", for: "time"  %>
     <div class="form-controls">
       <%= f.time_field :time, id: "time", class: "form-input" %>
@@ -21,8 +20,5 @@
       <%= f.submit yield(:page_title), class: "submit-button" %>
     </div>
   </div>
-
-  <%= f.hidden_field :user_id, value: params[:user_id] %>
-  <%= f.hidden_field :location_id, value: params[:location_id] %>
 
 <% end %>
