@@ -1,4 +1,4 @@
-class ReservationsController <reservapplicationController
+class ReservationsController <ApplicationController
   def new
     @reservation = Reservation.new
   end
@@ -38,4 +38,3 @@ class ReservationsController <reservapplicationController
     params.require(:reservation).permit(:time,:party_size)
   end
 end
-reserva

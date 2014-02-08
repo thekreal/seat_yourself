@@ -6,7 +6,8 @@
 
 <h3> Locations </h3>
 		<% @locations.each do |location| %>
-			<p><%= link_to location.address, restaurant_location_path(params[:id],location.id) %><p>
+			<h4><%= link_to location.address, restaurant_location_path(params[:id],location.id) %></h4>
 			<p>Open from <%=location.open_at%> till <%= location.close_at %></p>
+			<p><%= link_to "Make a reservation at this location", new_restaurant_location_reservation_path( params[:id], location.id) %></p>
 		<% end %>
 
