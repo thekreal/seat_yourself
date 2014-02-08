@@ -38,11 +38,4 @@ private
     current_user == user
   end
 
-  def self_action
-    unless current_user?(@user)
-      flash[:warning] = "You are not authorized to view other people's profile"
-      redirect_to current_user
-    end
-  end
-
 end

@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-  before_action :action_verification, except: [:new, :create]
+  before_action :must_signin, except: [:new, :create]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :must_be_self, except: [:new, :create]
 
   def show
   end
@@ -43,11 +44,15 @@ class UsersController < ApplicationController
 
 private
 
-  def action_verification
-    if !signed_in?
+  def must_signin
+    unless signed_in?
       flash[:warning] = "You are not signed in. Please signin first"
       redirect_to :signin
-    elsif !current_user?(@user)
+    end
+  end
+
+  def must_be_self
+    unless current_user?(@user)
       flash[:warning] = "You are not authorized!"
       redirect_to current_user
     end
