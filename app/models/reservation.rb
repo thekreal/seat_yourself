@@ -18,7 +18,7 @@ class Reservation < ActiveRecord::Base
   end
 
   def time
-    super().strftime("%I:%M %p")
+    super() #.strftime("%I:%M %p")
   end
 
   def within_open_hours?
