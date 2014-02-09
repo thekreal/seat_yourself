@@ -10,4 +10,8 @@ module ApplicationHelper
     return SITE_NAME
   end
 
+  def formatted_time(time)
+  	time.strftime("%I:%M %p")
+  end
+
 end

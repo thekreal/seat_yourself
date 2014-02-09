@@ -10,3 +10,12 @@
   <%= link_to 'Delete', @user, method: :delete, class: "control",
       confirm: "Are you sure you want to delete your account?" %>
 </div>
+
+<h2>Your Reservations</h2>
+	<% @reservations.each do |reservation| %>
+		<h3><%= reservation.location.restaurant.name %></h3>
+			<p><%= reservation.location.address %></p>
+			<p>
+				For <%= reservation.number_of_people %> people at <%= formatted_time(reservation.time) %>
+			</p>
+	<% end %>
