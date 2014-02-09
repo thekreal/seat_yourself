@@ -4,6 +4,8 @@ class UsersController < ApplicationController
   before_action :must_be_self, except: [:new, :create]
 
   def show
+    @user = current_user
+    @reservations = @user.reservations
   end
 
   def new
