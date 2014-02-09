@@ -1,85 +1,80 @@
-$logo:        rgba(183, 126, 102, 1);
+$logo:        rgba(147, 189, 199, 1);
 $white:       rgba(255, 255, 255, 1);
 $shadow:      rgba(60, 60, 60, 0.5);
+$side:        200px;
 
+.container {
+  padding: 0px 10px;
+}
 .user-profile,
 .user-reservations {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
-.user-profile {
-  text-align: center;
-  position: relative;
+.background-wrapper {
+  margin-bottom: 40px;
   display: inline-block;
-  padding: 10px;
-  min-width: 200px;
-  width: (100% / 3);
+  padding: 5px 5px 10px;
+  width: $side;
+  background: rgba(147, 189, 199, 1);
+  box-shadow: 0 0 6px -2px $shadow;
   vertical-align: top;
-  .gravatar {
-    margin-bottom: -10px;
-    box-shadow: 0 0 6px -2px $shadow;
-    img { width: 100%; }
-  }
-  .name {
-    position: relative;
-    top: -14px;
-    opacity: 0.7;
+  text-align: center;
 
-    font-size: 1.5em;
-    letter-spacing: -1px;
+  .user-profile {
     background: $white;
-  }
-  .email {
-    font-size: 0.9em;
-    color: rgba(100, 100, 100, 1);
-  }
-  .joined {
-    font-size: 0.8em;
-    color: rgba(150, 150, 150, 1);
-  }
+    .gravatar {
+      padding: 10px 10px;
+      img { width: 100%; }
+    }
+    .name {
+      font-size: 1.5em;
+      margin-bottom: 5px;
+    }
+    .email {
+      color: rgba(100, 100, 100, 1);
+      font-size: 0.9em;
+      margin-bottom: 5px;
+    }
+    .joined {
+      color: rgba(150, 150, 150, 1);
+      font-size: 0.8em;
+    }
 
-  .control {
-    display: inline-block;
-    padding: 5px;
-    margin: 10px 5px 5px;
-    text-decoration: none;
-    border-radius: 3px;
-    background: $white;
-    border: 1px solid $logo + 100;
-    color: rgba(200, 200, 200, 1);
-    &:hover {
-      color: rgba(255, 255, 255, 1);
-      background: $logo;
+    .control {
+      display: inline-block;
+      margin: 10px 5px 5px;
+      padding: 5px;
+      border: 1px solid $logo + 100;
+      border-radius: 3px;
+      background: $white;
+      color: rgba(200, 200, 200, 1);
+      text-decoration: none;
+      &:hover {
+        background: $logo;
+        color: rgba(255, 255, 255, 1);
+      }
     }
   }
 }
 
+
 .user-reservations {
   display: inline-block;
-  width: (100% / 3 * 2) - 1%;
+  width: calc(100% - $side);
   height: 100px;
 }
 
 
 @media all and (max-width: 600px) {
-  .user-profile {
-    .gravatar {
-      display: block;
+  .background-wrapper {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    .user-profile {
+      margin: 0px auto;
       width: 200px;
-      margin: 0 auto;
-      top: 10px;
-      position: relative;
     }
   }
-
-  .user-profile,
-  .user-reservations {
-    display: block;
-    float: none;
-    margin: 0 auto 40px;
-    width: 90%;
-    border: 1px solid;
-  }
-
 }

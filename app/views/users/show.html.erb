@@ -1,18 +1,22 @@
 <% provide :page_title, "#{@user.name}'s Profile".html_safe %>
 
-<div class="user-profile">
-  <div class="gravatar"><%= image_tag @user.gravatar(160) %></div>
-  <div class="name"><%= @user.name %></div>
+<div class="container">
 
-  <div class="email"><%= @user.email %></div>
-  <div class="joined"><%= since(@user.created_at) %></div>
+  <div class="background-wrapper">
+    <div class="user-profile">
+      <div class="gravatar"><%= image_tag @user.gravatar(160) %></div>
+      <div class="name"><%= @user.name %></div>
 
-  <% if current_user?(@user) %>
-  <%= link_to 'Edit', edit_user_path(@user), class: "control" %>
-  <%= link_to 'Delete', @user, method: :delete, class: "control",
-      confirm: "Are you sure you want to delete your account?" %>
-  <% end %>
-</div>
+      <div class="email"><%= @user.email %></div>
+      <div class="joined"><%= since(@user.created_at) %></div>
+
+      <% if current_user?(@user) %>
+      <%= link_to 'Edit', edit_user_path(@user), class: "control" %>
+      <%= link_to 'Delete', @user, method: :delete, class: "control",
+          confirm: "Are you sure you want to delete your account?" %>
+      <% end %>
+    </div>
+  </div>
 
 <div class="user-reservations">
   <h1>Upcoming Reservations</h1>
@@ -44,3 +48,5 @@
 				<%= link_to "Cancel this reservation", restaurant_location_reservation_path(reservation.location.restaurant_id, reservation.location_id, reservation.id), :confirm => "are you sure you want to cancel this reservation?", :method => :delete %>
 			</p>
 	<% end %>
+
+</div>
