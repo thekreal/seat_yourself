@@ -17,6 +17,7 @@ class Reservation < ActiveRecord::Base
     end
   end
 
+
   def time
     super() #.strftime("%I:%M %p")
   end
