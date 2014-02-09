@@ -13,8 +13,7 @@ class Location < ActiveRecord::Base
                               }
 
   def available_seats
-    # Select only the reservation that is not nil
-    reserved_seats = reservations.select { |r| !r.id.nil? }.inject(0) { |sum, r| sum + r.number_of_people }
+    reserved_seats = reservations.select { |r| r.persisted? }.inject(0) { |sum, r| sum + r.number_of_people }
     return number_of_seats - reserved_seats
   end
 

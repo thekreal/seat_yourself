@@ -30,8 +30,8 @@ class Reservation < ActiveRecord::Base
     # => ("2000-01-01 23:00:00 UTC".to_time - location.open_at) / 3600
     # => ("2000-01-01 00:00:00 UTC".to_time - location.open_at) / 3600
     # => ("2000-01-01 02:00:00 UTC".to_time - location.open_at) / 3600
-    closing_time = (location.close_at <= location.open_at ? location.close_at + 1.day : location.close_at)
-    time.between?(location.open_at, closing_time)
+    closing_time = (location.close_at <= location.open_at ? location.close_at + 24.hour : location.close_at)
+    time.between?(location.open_at, closing_time - 1.hour)
   end
 
 end
