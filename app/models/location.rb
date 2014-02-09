@@ -1,5 +1,6 @@
 class Location < ActiveRecord::Base
   belongs_to :restaurant
+
   has_many :reservations
   has_many :reserved_users, through: :reservations, source: 'user'
 
@@ -7,10 +8,12 @@ class Location < ActiveRecord::Base
 
   validates :number_of_seats, numericality: {
                                 only_integer: true,
-                                greater_than_or_equal_to: 1
+                                greater_than_or_equal_to: 1,
+                                message: "must be a valid number ( Greater or equal to 1)"
                               }
 
   def available_seats
+    # Select only the reservation that is not nil
     reserved_seats = reservations.select { |r| !r.id.nil? }.inject(0) { |sum, r| sum + r.number_of_people }
     return number_of_seats - reserved_seats
   end
