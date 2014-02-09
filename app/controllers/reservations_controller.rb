@@ -38,10 +38,10 @@ class ReservationsController <ApplicationController
     end
   end
 
-  def delete
+  def destroy
      @reservation = Reservation.find(params[:id])
      @reservation.destroy
-     redirect_to user_path
+     redirect_to user_path(params[:id] = current_user.id)
   end
 
   private
