@@ -18,5 +18,7 @@
 			<p>
 				For <%= reservation.number_of_people %> people at <%= formatted_time(reservation.time) %>
 			</p>
-			<p><%=  %></p>
+			<p>
+				<%= link_to "Cancel this reservation", restaurant_location_reservation_path(reservation.location.restaurant_id, reservation.location_id, reservation.id), :confirm => "are you sure you want to cancel this reservation?", :method => :delete %>
+			</p>
 	<% end %>
