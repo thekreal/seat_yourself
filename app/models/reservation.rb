@@ -2,8 +2,18 @@ class Reservation < ActiveRecord::Base
   belongs_to :user
   belongs_to :location
 
+  has_one :restaurant, through: :location
+
+  default_scope { order(time: :desc, created_at: :desc)}
+
   validate :valid_number_of_people, on: :create
   validate :valid_time, on: :create
+
+  def reserved_time
+    time.strftime("%I%p")
+  end
+
+private
 
   def valid_number_of_people
     if number_of_people.blank?

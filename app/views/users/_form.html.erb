@@ -1,4 +1,6 @@
+<div class="form">
 <%= form_for @user, html: { class: "form-container" } do |f| %>
+  <legend><%= yield(:page_title) %></legend>
   <%= render 'alerts/error_message', object: @user %>
 
   <div class="form-field">
@@ -32,9 +34,11 @@
   <div class="form-field">
     <div class="form-label"></div>
     <div class="form-controls">
-      <%= f.submit yield(:page_title), class: "submit-button" %>
+      <%= f.submit yield(:page_title), class: "form-btn" %>
+      <%= link_to "Back", :back, class: "form-btn" %>
     </div>
   </div>
 
 
 <% end %>
+</div>

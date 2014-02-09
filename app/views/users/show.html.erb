@@ -1,14 +1,36 @@
 <% provide :page_title, "#{@user.name}'s Profile".html_safe %>
 
 <div class="user-profile">
+  <div class="gravatar"><%= image_tag @user.gravatar(160) %></div>
   <div class="name"><%= @user.name %></div>
-  <div class="gravatar"><%= image_tag @user.gravatar(50) %></div>
+
   <div class="email"><%= @user.email %></div>
   <div class="joined"><%= since(@user.created_at) %></div>
 
+  <% if current_user?(@user) %>
   <%= link_to 'Edit', edit_user_path(@user), class: "control" %>
   <%= link_to 'Delete', @user, method: :delete, class: "control",
       confirm: "Are you sure you want to delete your account?" %>
+  <% end %>
+</div>
+
+<div class="user-reservations">
+  <h1>Upcoming Reservations</h1>
+
+  <% @reservations.each do |r| %>
+
+    <div class="reservation">
+      <div class="restaurant-name"><%= r.restaurant.name %></div>
+      <div class="restaurant-address"><%= r.location.address %></div>
+      <div class="reservation-details">
+        For <%= pluralize(r.number_of_people, 'person') %>
+        at <%= r.reserved_time %>
+      </div>
+    </div>
+
+
+
+  <% end %>
 </div>
 
 <h2>Your Reservations</h2>

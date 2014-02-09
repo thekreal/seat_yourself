@@ -1,0 +1,84 @@
+$logo:        rgba(183, 126, 102, 1);
+$white:       rgba(255, 255, 255, 1);
+$shadow:      rgba(60, 60, 60, 0.5);
+
+.form {
+  margin: 0 auto;
+  padding: 10px;
+  width: 80%;
+  border-radius: 5px;
+  background: rgba(240, 240, 240, 1);
+}
+.form-container {
+  position: relative;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin:30px auto 10px;
+  padding: 40px 20px 20px;
+  min-width: 400px;
+  width: 98%;
+  border: 1px solid $logo + 20;
+  background: $white;
+  box-shadow: 0 0 6px -1px $shadow;
+
+  legend {
+    position: absolute;
+    top: -30px;
+    right: -1px;
+    padding: 5px 20px;
+    background: $logo;
+    color: $white;
+    font-weight: 900;
+    font-size: 1.2em;
+  }
+
+  .form-field {
+    margin-bottom: 20px;
+    .form-label {
+      display: inline-block;
+      padding-right: 10px;
+      width: 100px;
+      text-align: right;
+      font-size: 0.8em;
+    }
+    .form-controls {
+      display: inline-block;
+      width: calc(100% - 120px);
+      .form-input {
+        padding: 2px 5px;
+        width: 80%;
+        outline: none;
+        border: none;
+        border-bottom: 1px dashed rgba(100, 100, 100, 1);
+        -webkit-transition: all 0.5s ease-in-out;
+        transition: all 0.5s ease-in-out;
+        &:hover, &:focus {
+          border-color: $logo + 50;
+        }
+      }
+      .form-btn {
+        padding: 0px;
+        padding: 5px;
+        font-family: "Verdana";
+        display: inline-block;
+        border: 1px solid;
+        border-radius: 3px;
+        background: $white;
+        color: rgba(80, 80, 80, 1);
+        text-decoration: none;
+        font-size: 12px;
+        &:hover {
+          background: $logo;
+          color: $white;
+        }
+      }
+      a.form-btn {
+        position: relative;
+        top: -2px;
+        left: 2px;
+        display: inline;
+        padding: 5px;
+      }
+    }
+  }
+}
