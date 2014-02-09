@@ -11,7 +11,7 @@ class Reservation < ActiveRecord::Base
 
 
   def check_party_size
-    if self.location.number_of_available_seats < self.number_of_people
+    if self.location.available_seats < self.number_of_people
       errors.add(:number_of_people, "exceeds available seats")
     end
   end
