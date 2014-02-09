@@ -4,6 +4,7 @@
   <h1>WELCOME</h1>
   <h1><%= site_name %></h1>
   <p>Come on in and grab a seat</p>
+
   <% if signed_in? %>
     <%= link_to "Find a Restaurant", restaurants_path, class: "btn" %>
   <% else %>
