@@ -17,8 +17,12 @@ class Reservation < ActiveRecord::Base
     end
   end
 
+  def time
+    super().strftime("%I:%M %p")
+  end
+
   def within_open_hours?
-    if !self.time.strftime("%I:%M %p").between?(self.location.open_time, self.location.close_time)
+    if !time.to_time.between?(location.open_at.to_time, location.close_at.to_time)
       errors.add(:time, "can not be outside of hours of operation")
     end
   end

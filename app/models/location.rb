@@ -1,7 +1,7 @@
 class Location < ActiveRecord::Base
   belongs_to :restaurant
   has_many :reservations
-  has_many :users, through: :reservations
+  has_many :reserved_users, through: :reservations, source: 'user'
 
   validates :address, presence: true
 
@@ -15,8 +15,17 @@ class Location < ActiveRecord::Base
     return self.number_of_seats - reserved_seats
   end
 
-  [:open, :close].each do |attr|
-    define_method("#{attr}_time") { return send("#{attr}_at").strftime("%I:%M %p") }
+  def operation_hours
+    "Open from #{open_at} till #{close_at}"
   end
+
+  def open_at
+    super().strftime("%I:%M %p")
+  end
+
+  def close_at
+    super().strftime("%I:%M %p")
+  end
+
 
 end
