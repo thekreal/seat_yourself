@@ -5,9 +5,10 @@
 	<p> <%= @restaurant.description%> </p>
 
 <h3> Locations </h3>
-		<% @locations.each do |location| %>
-			<h4><%= link_to location.address, restaurant_location_path(params[:id],location.id) %></h4>
-			<p>Open from <%=location.open_at%> till <%= location.close_at %></p>
-			<p><%= link_to "Make a reservation at this location", new_restaurant_location_reservation_path( params[:id], location.id) %></p>
-		<% end %>
+  <%= link_to 'New Location', new_restaurant_location_path(@restaurant) %>
+	<% @locations.each do |location| %>
+		<h4><%= link_to location.address, restaurant_location_path(params[:id],location.id) %></h4>
+		<p>Open from <%=location.open_at%> till <%= location.close_at %></p>
+		<p><%= link_to "Make a reservation at this location", new_restaurant_location_reservation_path( params[:id], location.id) %></p>
+	<% end %>
 
