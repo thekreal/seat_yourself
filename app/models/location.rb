@@ -11,21 +11,14 @@ class Location < ActiveRecord::Base
                               }
 
   def available_seats
-    reserved_seats = self.reservations.inject(0) { |sum, r| sum += r.number_of_people }
-    return self.number_of_seats - reserved_seats
+    reserved_seats = reservations.select { |r| !r.id.nil? }.inject(0) { |sum, r| sum + r.number_of_people }
+    return number_of_seats - reserved_seats
   end
 
   def operation_hours
-    "Open from #{open_at} till #{close_at}"
+    "#{open_at.strftime("%I%p")} - #{close_at.strftime("%I%p")}"
   end
 
-  # def open_at
-  #   super().strftime("%I:%M %p")
-  # end
-
-  # def close_at
-  #   super().strftime("%I:%M %p")
-  # end
 
 
 end
