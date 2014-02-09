@@ -6,7 +6,7 @@
   <p>Come on in and grab a seat</p>
   <% if signed_in? %>
     <%= link_to "Find a Restaurant", restaurants_path, class: "btn" %>
-
+  <% else %>
     <%= link_to "Sign In", :signin, class: "btn" %>
     <%= link_to "Sign Up", :signin, class: "btn" %>
   <% end %>
