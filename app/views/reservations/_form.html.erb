@@ -5,11 +5,7 @@
   <div class="form-field">
     <%= f.label :time, class: "form-label", for: "time"  %>
     <div class="form-controls">
-<<<<<<< HEAD
       <%= f.time_field :time, minute_step: 60, ampm: true %>
-=======
-      <%= f.time_field :time %>
->>>>>>> aed1110234d6923e2d765eb45518f03dc7b5cc31
     </div>
   </div>
 
@@ -29,4 +25,3 @@
 
 <% end %>
 
-<%= @reservation.within_open_hours? %><br>
