@@ -9,7 +9,7 @@
 	<% @locations.each do |location| %>
 		<h4><%= link_to location.address, restaurant_location_path(params[:id],location.id) %></h4>
 
-		<p>Open from <%=location.open_at%> till <%= location.close_at %></p>
+		<p><%= location.operation_hours %></p>
 
 		<% if signed_in? %>
 

@@ -16,7 +16,7 @@ class Location < ActiveRecord::Base
   end
 
   def operation_hours
-    "Open from #{open_at} till #{close_at}"
+    "Open from #{open_at.strftime("%I:%M %p")} till #{close_at.strftime("%I:%M %p")}"
   end
 
   # def open_at
