@@ -9,6 +9,15 @@
 	<% @locations.each do |location| %>
 		<h4><%= link_to location.address, restaurant_location_path(params[:id],location.id) %></h4>
 		<p>Open from <%=location.open_time%> till <%= location.close_time %></p>
+
+		<% if signed_in? %>
+
 		<p><%= link_to "Make a reservation at this location", new_restaurant_location_reservation_path( params[:id], location.id) %></p>
-	<% end %>
+		<% else %>
+
+			<p>Please <%= link_to "login", signin_path %> to make a reservation</p>
+		<% end %>
+
+
+<% end %>
 
