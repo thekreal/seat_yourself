@@ -19,6 +19,4 @@ class Location < ActiveRecord::Base
     "#{open_at.strftime("%I%p")} - #{close_at.strftime("%I%p")}"
   end
 
-
-
 end

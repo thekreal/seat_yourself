@@ -38,6 +38,12 @@ class ReservationsController <ApplicationController
     end
   end
 
+  def delete
+     @reservation = Reservation.find(params[:id])
+     @reservation.destroy
+     redirect_to user_path
+  end
+
   private
   def reservation_params
     params.require(:reservation).permit(:time,:number_of_people)

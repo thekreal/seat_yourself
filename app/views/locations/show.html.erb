@@ -1,5 +1,11 @@
-<%= @location.inspect %>
-<br><br>
-<%= @location.open_at %>
+<h1><%= @restaurant.name %> </h1>
+	<p> <%= @location.address %> </p>
+	<p><%= @location.operation_hours %></p>
 
-<br><br>
+	<% if signed_in? %>
+
+		<p><%= link_to "Make a reservation at this location", new_restaurant_location_reservation_path( params[:id], @location.id) %></p>
+		<% else %>
+
+			<p>Please <%= link_to "login", signin_path %> to make a reservation</p>
+		<% end %>
