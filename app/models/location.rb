@@ -12,6 +12,9 @@ class Location < ActiveRecord::Base
 
   # validates :restaurant_id, presence: true
 
-private
+  def number_of_available_seats
+    reserved_seats = self.reservations.inject(0) { |sum, r| sum += r.number_of_people }
+    return self.number_of_seats - reserved_seats
+  end
 
 end

@@ -5,6 +5,15 @@ class Reservation < ActiveRecord::Base
   validates :time, presence: true
   validates :number_of_people, numericality: {
                                 only_integer: true,
-                                less_than_or_equal_to: 100
                               }
+
+  validate :check_party_size, on: :create
+
+
+  def check_party_size
+    if self.location.number_of_available_seats < self.number_of_people
+      errors.add(:number_of_people, "exceeds available seats")
+    end
+  end
+
 end
