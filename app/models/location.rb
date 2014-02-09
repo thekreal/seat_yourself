@@ -10,8 +10,6 @@ class Location < ActiveRecord::Base
                                 greater_than_or_equal_to: 1
                               }
 
-  validates :restaurant_id, presence: true
-
   def available_seats
     reserved_seats = self.reservations.inject(0) { |sum, r| sum += r.number_of_people }
     return self.number_of_seats - reserved_seats
