@@ -19,13 +19,13 @@ class Location < ActiveRecord::Base
     "Open from #{open_at} till #{close_at}"
   end
 
-  def open_at
-    super().strftime("%I:%M %p")
-  end
+  # def open_at
+  #   super().strftime("%I:%M %p")
+  # end
 
-  def close_at
-    super().strftime("%I:%M %p")
-  end
+  # def close_at
+  #   super().strftime("%I:%M %p")
+  # end
 
 
 end

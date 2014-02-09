@@ -17,9 +17,9 @@ class Reservation < ActiveRecord::Base
     end
   end
 
-  def time
-    super().strftime("%I:%M %p")
-  end
+  # def time
+  #   super().strftime("%I:%M %p")
+  # end
 
   def within_open_hours?
     if !time.to_time.between?(location.open_at.to_time, location.close_at.to_time)
