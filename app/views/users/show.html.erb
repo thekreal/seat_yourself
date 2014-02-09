@@ -18,5 +18,7 @@
 			<p>
 				For <%= reservation.number_of_people %> people at <%= formatted_time(reservation.time) %>
 			</p>
-			<p><%=  %></p>
+			<p>
+				<%= link_to "Cancel this reservation", restaurant_location_reservation(reservation.restaurant_id, reservation.location_id, reservation.id), confirm %>
+			</p>
 	<% end %>
