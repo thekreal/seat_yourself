@@ -1,4 +1,5 @@
 <%= form_for [@location.restaurant, @location, @reservation], html: { class: "form-container"} do |f| %>
+
   <legend>New Reservation</legend>
   <%= render 'alerts/error_message', object: @reservation %>
 
