@@ -1,4 +1,5 @@
 $logo:        rgba(147, 189, 199, 1);
+$error:       rgba(209, 108, 108, 1);
 
 [class*="flash"] {
   width: 95%;
@@ -7,4 +8,20 @@ $logo:        rgba(147, 189, 199, 1);
 }
 
 .flash-success {
+}
+
+
+.form-error {
+  display: block;
+  background: $error;
+  padding: 10px;
+  color: $error + 100;
+  margin-bottom: 20px;
+  border: 1px solid $error + 10;
+  ul {
+    list-style-type: circle;
+    margin-left: 20px;
+    li { margin-bottom: 5px; }
+    li:last-of-type { margin-bottom: 0px; }
+  }
 }
