@@ -29,7 +29,7 @@ class UsersController < ApplicationController
   def update
     if @user.update(user_params)
       signin @user
-      flash[:warning] = "Account updated successfully"
+      flash[:success] = "Account updated successfully"
       redirect_to @user
     else
       render :edit
