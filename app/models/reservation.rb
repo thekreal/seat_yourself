@@ -6,9 +6,7 @@ class Reservation < ActiveRecord::Base
 
   default_scope { order(time: :desc, created_at: :desc)}
 
-  validates :number_of_people, numericality: {only_integer: true,
-                                              greater_than: 0
-                                             }
+  validates :number_of_people, numericality: { only_integer: true }
 
   validate :valid_number_of_people, on: :create
   validate :valid_time, on: :create
