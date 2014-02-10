@@ -1,7 +1,6 @@
 class ReservationsController <ApplicationController
-  before_action :set_location, only: [:new, :create]
-  before_action :set_reservation, except: [:new, :create]
-
+  before_action :set_location, only: [:new, :create, :edit, :update]
+  before_action :set_reservation, except: [:new, :create,]
   def show
   end
 
@@ -23,7 +22,7 @@ class ReservationsController <ApplicationController
   end
 
   def update
-    if @reservation.update_attributes(reservation_params)
+    if @reservation.update(reservation_params)
       redirect_to current_user
     else
       render :edit
