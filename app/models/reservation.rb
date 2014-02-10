@@ -25,6 +25,11 @@ class Reservation < ActiveRecord::Base
 
 private
 
+  def available_seats
+    reserved_seats = location.reservations.select { |r| r.persisted? && r.id != id }.inject(0) { |sum, r| sum + r.number_of_people }
+    return location.number_of_seats - reserved_seats
+  end
+
   def valid_number_of_people
     if number_of_people.blank?
       errors[:base] << "You got to tell me how many people are coming!"
