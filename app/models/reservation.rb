@@ -13,30 +13,43 @@ class Reservation < ActiveRecord::Base
   validate :valid_date
   validate :valid_date_time
 
-  @duration = 1.hour
+  validate :full?
 
+
+  # Generate an array of operation hours for the location
   def available_hour
     available_hours = []
-
     location.operation_hours.times do |i|
-      time = (location.open_at + i.hour)
-      date = Time.now.beginning_of_day if date.nil?
-      available_hours << time.strftime("%I:%M %p") unless full?(date, time)
+      available_hours << (location.open_at + i.hour).strftime("%I:%M %p")
     end
     return available_hours
   end
 
-
-  def full?(d, t)
-    reserved_seats = find_reserved_seats(d, t)
-    return location.number_of_seats - reserved_seats <= 0 ? true : false
-  end
-
+  # returns the number of available seats at the given date and time
   def available_seats
     reserved_seats = find_reserved_seats(date, time)
     return location.number_of_seats - reserved_seats
   end
 
+  def reserved_time
+    time.strftime("%I%p")
+  end
+
+  def time_past?
+    date.past? || (date.today? && time.strftime("%I:%M %p").to_time.past?)
+  end
+
+private
+
+  # Check whether or not the location is full on the given date and time
+  def full?
+    reserved_seats = find_reserved_seats(date, time)
+    if (location.number_of_seats - reserved_seats <= 0)
+      errors[:base] << "The restaurant is full on #{date} at #{time.strftime("%I:%M %p")}"
+    end
+  end
+
+  # Find how many seats have been reserved on the given date and time
   def find_reserved_seats(d, t)
     return (location.reservations.where(date: d, time: t).select do |r|
       r.persisted? && r.id != id
@@ -44,13 +57,6 @@ class Reservation < ActiveRecord::Base
       sum + r.number_of_people
     end
   end
-
-
-  def reserved_time
-    time.strftime("%I%p")
-  end
-
-private
 
   def valid_number_of_people
     if number_of_people.blank?
@@ -79,10 +85,14 @@ private
   end
 
   def valid_date_time
-    if date.today? && time.strftime("%I:%M %p").to_time.past?
+    if time_past?
       errors[:base] << "We are waiting for you to invent time machine! let us know"
     end
   end
+
+  # def time_past?
+  #   date.past? || (date.today? && time.strftime("%I:%M %p").to_time.past?)
+  # end
 
   def within_open_hours?
     # Time column has the same dummy date 2000-01-01

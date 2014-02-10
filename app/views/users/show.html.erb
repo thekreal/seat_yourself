@@ -28,6 +28,7 @@
       <div class="restaurant-address"><%= r.location.address %></div>
       <div class="reservation-details">
         For <%= pluralize(r.number_of_people, 'person') %>
+        on <%= r.date %>
         at <%= r.reserved_time %>
       </div>
     </div>
