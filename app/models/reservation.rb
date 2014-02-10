@@ -17,13 +17,15 @@ class Reservation < ActiveRecord::Base
 
   def available_hour
     available_hours = []
-    ((location.close_at.to_time - location.open_at.to_time) / 3600).to_int.times do |i|
+
+    location.operation_hours.times do |i|
       time = (location.open_at + i.hour)
       date = Time.now.beginning_of_day if date.nil?
       available_hours << time.strftime("%I:%M %p") unless full?(date, time)
     end
     return available_hours
   end
+
 
   def full?(d, t)
     reserved_seats = find_reserved_seats(d, t)

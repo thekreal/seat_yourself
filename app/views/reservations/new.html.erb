@@ -3,7 +3,7 @@
 <h1>Make a Reservation For </h1>
 	<h3><%= @location.restaurant.name.capitalize %></h3>
 	<p><%= @location.address %></p>
-  <p>Open Hour: <%= @location.operation_hours %></p>
+  <p>Open Hour: <%= @location.open_hours %></p>
 
 <div class="form">
   <%= render "form" %>

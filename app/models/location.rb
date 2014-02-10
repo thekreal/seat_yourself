@@ -13,6 +13,10 @@ class Location < ActiveRecord::Base
                               }
 
   def operation_hours
+    ((close_at.to_time - open_at.to_time) / 3600).to_i
+  end
+
+  def open_hours
     "#{open_at.strftime("%I%p")} - #{close_at.strftime("%I%p")}"
   end
 
