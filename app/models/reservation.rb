@@ -8,8 +8,8 @@ class Reservation < ActiveRecord::Base
 
   validates :number_of_people, numericality: { only_integer: true }
 
-  validate :valid_number_of_people, on: :create
-  validate :valid_time, on: :create
+  validate :valid_number_of_people
+  validate :valid_time
 
   def available_hour
     available_hours = []
