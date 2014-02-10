@@ -1,0 +1,38 @@
+$logo:        rgba(147, 189, 199, 1);
+$white:       rgba(255, 255, 255, 1);
+$shadow:      rgba(60, 60, 60, 0.5);
+
+.locations {
+  position: relative;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 60px auto 10px;
+  padding: 40px 20px 20px;
+  min-width: 400px;
+  width: 98%;
+  border: 1px solid $logo + 20;
+  background: $white;
+  box-shadow: 0 0 6px -1px $shadow;
+
+  legend {
+    position: absolute;
+    top: -30px;
+    right: -1px;
+    padding: 5px 20px;
+    background: $logo;
+    color: $white;
+    font-weight: 900;
+    font-size: 1.2em;
+  }
+}
+
+
+.location {
+  border: 1px solid;
+  width: 300px;
+  float: left;
+
+  display: block;
+
+
+}

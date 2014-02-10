@@ -13,7 +13,7 @@ class Location < ActiveRecord::Base
                               }
 
   def available_seats(id)
-    reserved_seats = reservations.select { |r| r.persisted? || r.id != id }.inject(0) { |sum, r| sum + r.number_of_people }
+    reserved_seats = reservations.select { |r| r.persisted? && r.id != id }.inject(0) { |sum, r| sum + r.number_of_people }
     return number_of_seats - reserved_seats
   end
 

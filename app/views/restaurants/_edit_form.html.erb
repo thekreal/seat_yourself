@@ -1,8 +1,9 @@
 
 <%= form_for @restaurant, html: { class: "form-container" } do |f| %>
+  <legend><%= yield(:page_title) %></legend>
 
+  <%= render 'alerts/error_message', object: @restaurant %>
 
-  <%= @restaurant.errors.inspect if @restaurant.errors.any? %>
   <div class="form-field">
     <%= f.label :name, for: "name", class: "form-label" %>
     <div class="form-controls">
@@ -20,21 +21,16 @@
   <div class="form-field">
     <div class="form-label"></div>
     <div class="form-controls">
-      <%= f.submit yield(:page_title), class: "submit-button" %>
+      <%= f.submit yield(:page_title), class: "form-btn" %>
+      <%= link_to 'Back', restaurants_path, class: "form-btn" %>
     </div>
   </div>
 
-  <div class="container">
-    <legend>List of Locations</legend>
-    <%= @restaurant.locations.each do |location| %>
-      <div class="location">
-        <p>
-          <%= location.id %> - <%= location.address %>
-          <%= link_to "Modify", edit_restaurant_location_path(@restaurant,location) %>
-        </p>
-      </div>
-
-    <% end %>
-  </div>
-
 <% end %>
+
+<div class="locations">
+  <legend><%= @restaurant.name %>'s Locations</legend>
+  <% @restaurant.locations.each do |location| %>
+    <%= render location %>
+  <% end %>
+</div>
