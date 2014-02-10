@@ -35,7 +35,7 @@ private
       errors[:base] << "You got to tell me how many people are coming!"
     elsif number_of_people < 1
       errors[:base] << "Can't have negative number. Try a float !!!"
-    elsif number_of_people > location.available_seats(id)
+    elsif number_of_people > available_seats
       errors[:base] << "Too many people are attending, too little seats!"
     end
   end
