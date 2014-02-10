@@ -1,7 +1,15 @@
 <%= form_for [@location.restaurant, @location, @reservation], html: { class: "form-container"} do |f| %>
-
   <legend>New Reservation</legend>
+
   <%= render 'alerts/error_message', object: @reservation %>
+
+  <div class="form-field">
+    <%= f.label "Available Dates", class: "form-label", for: "date"  %>
+    <div class="form-controls">
+      <%= f.date_select :date,
+          start_year: Time.now.year, end_year: Time.now.year + 1 %>
+    </div>
+  </div>
 
   <div class="form-field">
     <%= f.label "Available Hours", class: "form-label", for: "time"  %>
@@ -27,3 +35,5 @@
   </div>
 
 <% end %>
+
+<%= @reservation.date %>

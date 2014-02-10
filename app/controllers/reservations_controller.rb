@@ -37,7 +37,7 @@ class ReservationsController <ApplicationController
 private
 
   def reservation_params
-    params.require(:reservation).permit(:time,:number_of_people)
+    params.require(:reservation).permit(:date, :time, :number_of_people)
   end
 
   def set_location

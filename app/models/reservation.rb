@@ -10,6 +10,8 @@ class Reservation < ActiveRecord::Base
 
   validate :valid_number_of_people
   validate :valid_time
+  validate :valid_date
+  validate :valid_date_time
 
   @duration = 1.hour
 
@@ -61,6 +63,20 @@ private
       errors[:base] << "So when are you coming?"
     elsif !within_open_hours?
       errors[:base] << "#{location.restaurant.name} is not open at #{time.strftime("%I%p")}"
+    end
+  end
+
+  def valid_date
+    if date.blank?
+      errors[:base] << "So when are you coming"
+    elsif date > Time.now.beginning_of_day + 1.year
+      errors[:base] << "You are looking to far ahead! Can't book it now!"
+    end
+  end
+
+  def valid_date_time
+    if date.today? && time.strftime("%I:%M %p").to_time.past?
+      errors[:base] << "We are waiting for you to invent time machine! let us know"
     end
   end
 
