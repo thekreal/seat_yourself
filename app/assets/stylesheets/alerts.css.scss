@@ -1,26 +1,35 @@
 $logo:        rgba(147, 189, 199, 1);
+
+$success:     rgba(183, 223, 153, 1);
+$warning:     rgba(239, 229, 136, 1);
 $error:       rgba(209, 108, 108, 1);
 
-[class*="flash"] {
+@mixin flash($color : $logo) {
+  display: block;
+  margin: 10px auto 20px;
+  padding: 10px;
   width: 95%;
-  margin: 10px auto;
-  padding: 5px 10px;
+  border: 1px solid $color + 10;
+  background: $color;
+  color: $color + 100;
+
 }
 
-.flash-success {
-}
+.flash-success { @include flash($success); }
+.flash-warning { @include flash($warning); }
+.flash-info { @include flash($logo); }
 
 
 .form-error {
   display: block;
-  background: $error;
-  padding: 10px;
-  color: $error + 100;
   margin-bottom: 20px;
+  padding: 10px;
   border: 1px solid $error + 10;
+  background: $error;
+  color: $error + 100;
   ul {
-    list-style-type: circle;
     margin-left: 20px;
+    list-style-type: circle;
     li { margin-bottom: 5px; }
     li:last-of-type { margin-bottom: 0px; }
   }
