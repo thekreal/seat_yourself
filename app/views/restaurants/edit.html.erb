@@ -1,41 +1,5 @@
 <% provide :page_title, "Edit Restaurant" %>
 
-<%= form_for @restaurant, html: { class: "form-container" } do |f| %>
-
-
-  <%= @restaurant.errors.inspect if @restaurant.errors.any? %>
-  <div class="form-field">
-    <%= f.label :name, for: "name", class: "form-label" %>
-    <div class="form-controls">
-      <%= f.text_field :name, id: "name", class: "form-input" %>
-    </div>
-  </div>
-
-  <div class="form-field">
-    <%= f.label :description, for: "description", class: "form-label" %>
-    <div class="form-controls">
-      <%= f.text_area :description, id: "description", class: "form-input" %>
-    </div>
-  </div>
-
-  <div class="form-field">
-    <div class="form-label"></div>
-    <div class="form-controls">
-      <%= f.submit yield(:page_title), class: "submit-button" %>
-    </div>
-  </div>
-
-  <div class="container">
-    <legend>List of Locations</legend>
-    <%= @restaurant.locations.each do |location| %>
-      <div class="location">
-        <p>
-          <%= location.id %> - <%= location.address %>
-          <%= link_to "Modify", edit_restaurant_location_path(@restaurant,location) %>
-        </p>
-      </div>
-
-    <% end %>
-  </div>
-
-<% end %>
+<div class="form">
+  <%= render 'editform' %>
+</div>
