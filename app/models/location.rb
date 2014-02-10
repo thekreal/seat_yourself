@@ -12,8 +12,8 @@ class Location < ActiveRecord::Base
                                 message: "must be a valid number ( Greater or equal to 1)"
                               }
 
-  def available_seats
-    reserved_seats = reservations.select { |r| r.persisted? }.inject(0) { |sum, r| sum + r.number_of_people }
+  def available_seats(id)
+    reservations.select { |r| r.persisted? || r.id != id }.inject(0) { |sum, r| sum + r.number_of_people }
     return number_of_seats - reserved_seats
   end
 
