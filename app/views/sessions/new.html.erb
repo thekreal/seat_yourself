@@ -1,8 +1,8 @@
 <% provide :page_title, "Sign In" %>
 
-<div id="signin">
-  <legend>Sign In</legend>
+<div id="signin" class="form">
   <%= form_for :session, url: sessions_path, html: { class: "form-container" } do |f| %>
+    <legend>Sign In</legend>
 
     <div class="form-field">
       <%= f.label :email, for: "email", class: "form-label" %>

@@ -9,6 +9,14 @@ class Reservation < ActiveRecord::Base
   validate :valid_number_of_people, on: :create
   validate :valid_time, on: :create
 
+  def available_hour
+    available_hours = []
+    ((location.close_at.to_time - location.open_at.to_time) / 3600).to_int.times do |i|
+      available_hours << (location.open_at + i.hour).strftime("%I:%M %p")
+    end
+    return available_hours
+  end
+
   def reserved_time
     time.strftime("%I%p")
   end
@@ -18,8 +26,10 @@ private
   def valid_number_of_people
     if number_of_people.blank?
       errors[:base] << "You got to tell me how many people are coming!"
+    elsif number_of_people < 1
+      errors[:base] << "Can't have negative number. Try a float !!!"
     elsif number_of_people > location.available_seats
-      errors[:base] << "Too many people, too little seats! :("
+      errors[:base] << "Too many people are attending, too little seats!"
     end
   end
 

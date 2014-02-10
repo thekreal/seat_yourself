@@ -1,7 +1,8 @@
 <%= form_for @restaurant, html: { class: "form-container" } do |f| %>
-
+  <legend><%= yield(:page_title) %></legend>
 
   <%= @restaurant.errors.inspect if @restaurant.errors.any? %>
+
   <div class="form-field">
     <%= f.label :name, for: "name", class: "form-label" %>
     <div class="form-controls">
@@ -28,21 +29,21 @@
     <div class="form-field">
       <%= l.label :number_of_seats, for: "number_of_seats", class: "form-label" %>
       <div class="form-controls">
-        <%= l.number_field :number_of_seats, id: "number_of_seats", class: "form-input" %>
+        <%= l.number_field :number_of_seats, min: 1, id: "number_of_seats", class: "form-input" %>
       </div>
     </div>
 
     <div class="form-field">
       <%= l.label :open_at, for: "open_at", class: "form-label" %>
       <div class="form-controls">
-        <%= l.time_field :open_at, id: "open_at", class: "form-input" %>
+        <%= l.time_select :open_at, minute_step: 60, ampm: true, id: "open_at", class: "form-input" %>
       </div>
     </div>
 
     <div class="form-field">
       <%= l.label :close_at, for: "close_at", class: "form-label" %>
       <div class="form-controls">
-        <%= l.time_field :close_at, id: "close_at", class: "form-input" %>
+        <%= l.time_select :close_at, minute_step: 60, ampm: true, id: "close_at", class: "form-input" %>
       </div>
     </div>
 
@@ -51,7 +52,8 @@
   <div class="form-field">
     <div class="form-label"></div>
     <div class="form-controls">
-      <%= f.submit yield(:page_title), class: "submit-button" %>
+      <%= f.submit yield(:page_title), class: "form-btn" %>
+      <%= link_to 'Back', :back, class: "form-btn" %>
     </div>
   </div>
 

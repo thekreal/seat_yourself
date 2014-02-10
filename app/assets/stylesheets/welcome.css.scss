@@ -1,4 +1,4 @@
-$logo:        rgba(183, 126, 102, 1);
+$logo:        rgba(147, 189, 199, 1);
 
 #welcome {
   -webkit-box-sizing: border-box;
@@ -11,7 +11,7 @@ $logo:        rgba(183, 126, 102, 1);
 
   h1 {
     margin: 0px;
-    color: rgba(183, 126, 102, 1) - 100;
+    color: $logo - 100;
     letter-spacing: -1px;
     font-weight: 900;
     font-size: 3em;

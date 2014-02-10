@@ -1,25 +1,27 @@
 <%= form_for [@location.restaurant, @location, @reservation], html: { class: "form-container"} do |f| %>
-
+  <legend>New Reservation</legend>
   <%= render 'alerts/error_message', object: @reservation %>
 
-  <div class="form-field">
+    <div class="form-field">
     <%= f.label :time, class: "form-label", for: "time"  %>
     <div class="form-controls">
-      <%= f.time_field :time, minute_step: 60, ampm: true %>
+      <%= f.select :time, options_for_select(@reservation.available_hour,
+          selected: (params[:reservation].nil? ? [] : params[:reservation][:time])) %>
     </div>
   </div>
 
   <div class="form-field">
     <%= f.label :number_of_people, class: "form-label", for: "number_of_people"  %>
     <div class="form-controls">
-      <%= f.number_field :number_of_people, id: "number_of_people", class: "form-input" %>
+      <%= f.number_field :number_of_people, min: 1, id: "number_of_people", class: "form-input" %>
     </div>
   </div>
 
   <div class="form-field">
     <div class="form-label"></div>
     <div class="form-controls">
-      <%= f.submit yield(:page_title), class: "submit-button" %>
+      <%= f.submit yield(:page_title), class: "form-btn" %>
+      <%= link_to "Back", @reservation.restaurant, class: "form-btn" %>
     </div>
   </div>
 

@@ -3,6 +3,10 @@ class ReservationsController <ApplicationController
   before_action :set_restaurant
   before_action :set_location
 
+  def index
+    @reservations = Reservation.all
+  end
+
   def new
     @reservation = @location.reservations.new
   end
@@ -11,15 +15,13 @@ class ReservationsController <ApplicationController
     @reservation = @location.reservations.new(reservation_params)
     @reservation.user_id = current_user.id
     if @reservation.save
-      redirect_to root_url
+      redirect_to current_user
     else
       render :new
     end
   end
 
-  def index
-    @reservations = Reservation.all
-  end
+
 
   def show
     @reservation = Reservation.find(params[:id])
