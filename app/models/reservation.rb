@@ -22,11 +22,11 @@ class Reservation < ActiveRecord::Base
   end
 
   def available_seats
-    # location.where()
-    # Reservation.where(time: time)
-
-
-    reserved_seats = location.reservations.select { |r| r.persisted? && r.id != id }.inject(0) { |sum, r| sum + r.number_of_people }
+    reserved_seats = (location.reservations.where(time: time).select do |r|
+      r.persisted? && r.id != id
+    end).inject(0) do |sum, r|
+      sum + r.number_of_people
+    end
     return location.number_of_seats - reserved_seats
   end
 
