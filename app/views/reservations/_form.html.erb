@@ -4,7 +4,7 @@
   <%= render 'alerts/error_message', object: @reservation %>
 
   <div class="form-field">
-    <%= f.label :time, class: "form-label", for: "time"  %>
+    <%= f.label "Available Hours", class: "form-label", for: "time"  %>
     <div class="form-controls">
       <%= f.select :time, options_for_select(@reservation.available_hour,
           selected: (params[:reservation].nil? ? [] : params[:reservation][:time])) %>

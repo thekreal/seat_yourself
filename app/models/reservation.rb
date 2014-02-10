@@ -16,18 +16,28 @@ class Reservation < ActiveRecord::Base
   def available_hour
     available_hours = []
     ((location.close_at.to_time - location.open_at.to_time) / 3600).to_int.times do |i|
-      available_hours << (location.open_at + i.hour).strftime("%I:%M %p")
+      time = (location.open_at + i.hour)
+      available_hours << time.strftime("%I:%M %p") unless full?(time)
     end
     return available_hours
   end
 
+  def full?(t)
+    reserved_seats = find_reserved_seats(t)
+    return location.number_of_seats - reserved_seats <= 0 ? true : false
+  end
+
   def available_seats
-    reserved_seats = (location.reservations.where(time: time).select do |r|
+    reserved_seats = find_reserved_seats(time)
+    return location.number_of_seats - reserved_seats
+  end
+
+  def find_reserved_seats(t)
+    return (location.reservations.where(time: t).select do |r|
       r.persisted? && r.id != id
     end).inject(0) do |sum, r|
       sum + r.number_of_people
     end
-    return location.number_of_seats - reserved_seats
   end
 
   def reserved_time
