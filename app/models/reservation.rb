@@ -5,13 +5,11 @@ class Reservation < ActiveRecord::Base
 
   has_one :restaurant, through: :location
 
-<<<<<<< HEAD
+
   default_scope { order(time: :desc, created_at: :desc)}
-=======
-  # default_scope { order(time: :desc, created_at: :desc)}
   # scope :upcoming, -> { where("date >", Date.today)  }
   # scope :past, -> { where("date < :today ? OR (date == :today AND time <= :time)", { today: Date.today, time: Time.now.strftime("%I:%M %p").to_time)  }) }
->>>>>>> a76b717d45999e8a68c442b67d436958e5d48357
+
   validates :number_of_people, numericality: { only_integer: true }
 
   def available_hours
@@ -27,16 +25,6 @@ class Reservation < ActiveRecord::Base
   validate :valid_date
   validate :valid_date_time
   validate :full?
-
-<<<<<<< HEAD
-=======
-
-
-
-
-
->>>>>>> a76b717d45999e8a68c442b67d436958e5d48357
-
 
 
   # Generate an array of operation hours for the location
