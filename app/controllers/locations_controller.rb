@@ -1,5 +1,5 @@
 class LocationsController < ApplicationController
-  before_action :set_restaurant, except: [:show, :destroy]
+  before_action :set_restaurant, except: [:show, :destroy, :edit, :update]
   before_action :set_location, only: [:show, :edit, :update, :destroy]
 
   def index

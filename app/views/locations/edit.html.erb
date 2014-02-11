@@ -2,5 +2,46 @@
 
 <div id="edit-location">
   <h1 class="title">Update Location for <%= @location.restaurant.name %></h1>
-  <%= render 'form' %>
+  <%= form_for @location, html: { class: "form-container"} do |f| %>
+  <legend><%= yield(:page_title) %></legend>
+
+  <%= render 'alerts/error_message', object: @location %>
+
+  <div class="form-field">
+    <%= f.label :address, class: "form-label", for: "address"  %>
+    <div class="form-controls">
+      <%= f.text_field :address, id: "address", class: "form-input" %>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <%= f.label :number_of_seats, class: "form-label", for: "number_of_seats"  %>
+    <div class="form-controls">
+      <%= f.number_field :number_of_seats, id: "number_of_seats", class: "form-input" %>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <%= f.label :open_at, for: "open_at", class: "form-label" %>
+    <div class="form-controls">
+      <%= f.time_select :open_at, minute_step: 60, ampm: true, id: "open_at", class: "form-input" %>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <%= f.label :close_at, for: "close_at", class: "form-label" %>
+    <div class="form-controls">
+      <%= f.time_select :close_at, minute_step: 60, ampm: true, id: "close_at", class: "form-input" %>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <div class="form-label"></div>
+    <div class="form-controls">
+      <%= f.submit yield(:page_title), class: "form-btn" %>
+      <%= link_to "Back", @location.restaurant, class: "form-btn" %>
+    </div>
+  </div>
+
+<% end %>
 </div>
