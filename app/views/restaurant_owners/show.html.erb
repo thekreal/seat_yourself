@@ -3,7 +3,7 @@
 <div class="container">
 
   <!-- Renders 'members/_member.html.erb' -->
-  <%= render 'members/member', user: @user %>
+  <%= render @user, user: @user %>
 
   <div id="user-reservations" class="feeds">
     <h1>My Restaurants</h1>

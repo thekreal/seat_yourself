@@ -1,19 +1,9 @@
-<h1><%= @restaurant.name %></h1>
-	<p> <%= @restaurant.description%> </p>
+<%= render @restaurant %>
 
-<h3> Locations </h3>
-  <%= link_to 'New Location', new_restaurant_location_path(@restaurant) %>
+<div id="locations">
+	<h4>Locations</h4>
+	<%= link_to 'New Location', new_restaurant_location_path(@restaurant) %>
 	<% @locations.each do |location| %>
-		<h4><%= link_to location.address, restaurant_location_path(params[:id],location.id) %></h4>
-
-		<p><%= location.open_hours %></p>
-
-		<% if signed_in? %>
-
-		<p><%= link_to "Make a reservation at this location", new_restaurant_location_reservation_path( params[:id], location.id) %></p>
-		<% else %>
-
-			<p>Please <%= link_to "login", signin_path %> to make a reservation</p>
-		<% end %>
-
-<% end %>
+		<%= render location %>
+	<% end %>
+</div>
