@@ -55,24 +55,24 @@ $shadow:      rgba(60, 60, 60, 0.5);
         width: 80%;
         outline: none;
         border: none;
-        border-bottom: 1px dashed rgba(100, 100, 100, 1);
+        border-bottom: 1px dotted rgba(100, 100, 100, 1);
         -webkit-transition: all 0.5s ease-in-out;
         transition: all 0.5s ease-in-out;
         &:hover, &:focus {
-          border-color: $logo + 50;
+          border-color: $logo;
         }
       }
 
       [type="number"].form-input {
         padding: 2px 5px;
         width: 100px;
-        border: 1px dashed rgba(100, 100, 100, 1);
+        border: 1px dotted rgba(100, 100, 100, 1);
         -webkit-appearance: menubar;
       }
 
       select {
         background: white;
-        border: 1px dashed rgba(100, 100, 100, 1);
+        border: 1px dotted rgba(100, 100, 100, 1);
         color: rgba(80, 80, 80, 1);
         -webkit-appearance: caret;
         padding-left: 15px;
@@ -83,7 +83,7 @@ $shadow:      rgba(60, 60, 60, 0.5);
 
 
       textarea {
-        border: 1px dashed rgba(100, 100, 100, 1);
+        border: 1px dotted rgba(100, 100, 100, 1);
         padding: 5px;
         height: 5em;
         resize: vertical;

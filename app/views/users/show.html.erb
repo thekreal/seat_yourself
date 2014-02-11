@@ -20,7 +20,6 @@
 
 <div class="user-reservations">
   <h1>Upcoming Reservations</h1>
-
   <% @reservations.each do |r| %>
 
     <div class="reservation">
@@ -52,3 +51,14 @@
 	<% end %>
 
 </div>
+
+<h1>Upcoming</h1>
+<% @reservations.upcoming.each do |r| %>
+  <%= r.inspect %>
+<% end %>
+<h1>Past</h1>
+<% @reservations.past.each do |r| %>
+  <%= r.inspect %>
+<% end %>
+
+<%= @reservations.all.size %>

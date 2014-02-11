@@ -1,10 +1,15 @@
 class Location < ActiveRecord::Base
+
   belongs_to :restaurant
 
   has_many :reservations
   has_many :reserved_users, through: :reservations, source: 'user'
 
   validates :address, presence: true
+
+  # Geocode for address
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
 
   validates :number_of_seats, numericality: {
                                 only_integer: true,
