@@ -9,7 +9,7 @@
   <div class="location-controls">
   <% if signed_in? %>
 
-    <%= link_to 'Make an reservation', new_location_reservation_path(location.id) %>
+    <%= link_to 'Make a reservation', new_location_reservation_path(location.id) %>
   <% else %>
     <p>Please <%= link_to 'Sign In', :member_signin %> to make an reservation</p>
 
