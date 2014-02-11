@@ -1,0 +1,18 @@
+<% provide :page_title, "#{@user.name}'s Profile".html_safe %>
+
+<div class="container">
+
+  <!-- Renders 'members/_member.html.erb' -->
+  <%= render 'members/member' %>
+
+  <div id="user-reservations" class="feeds">
+    <h1>My Restaurants</h1>
+
+    <% @user.restaurants.each do |restaurant| %>
+
+      <!-- Render reservations/_reservations.html.erb -->
+      <%= render restaurant %>
+
+    <% end %>
+  </div>s
+
