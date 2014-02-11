@@ -8,13 +8,13 @@ SeatYourself::Application.routes.draw do
   get 'member_signup'   =>      'members#new',           as: :member_signup
   resources :members
 
-  get 'owner_signup'    =>      'restaurant_owers#new',  as: :owner_signup
-  resources :restaurant_owers
+  get 'owner_signup'    =>      'restaurant_owners#new',  as: :owner_signup
+  resources :restaurant_owners
 
   resources :restaurants do
-    resources :locations
+    resources :locations do
+      resources :reservations,  except: [:index]
+    end
   end
-
-  resources :reservations,  except: [:index]
 
 end
