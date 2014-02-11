@@ -15,6 +15,11 @@
       <!-- Render reservations/_reservations.html.erb -->
       <%= render restaurant %>
 
+      <% restaurant.locations.each do |location| %>
+
+        <%= render location %>
+
+      <% end %>
     <% end %>
   </div>
 
