@@ -19,7 +19,7 @@ class Reservation < ActiveRecord::Base
 
 
   # Generate an array of operation hours for the location
-  def available_hour
+  def available_hours
     available_hours = []
     location.operation_hours.times do |i|
       available_hours << (location.open_at + i.hour).strftime("%I:%M %p")
@@ -34,14 +34,18 @@ class Reservation < ActiveRecord::Base
   end
 
   def reserved_time
-    datetime.strftime("%I%p")
+    time.strftime("%I%p")
+  end
+
+  def reserved_date
+    date.strftime("%A %Y-%B-%d")
   end
 
   def time_past?
     date.past? || (date.today? && time.strftime("%I:%M %p").to_time.past?)
   end
 
-private
+
 
   # Check whether or not the location is full on the given date and time
   def full?
@@ -93,9 +97,12 @@ private
   end
 
   def within_open_hours?
-
-    closing_time = (location.close_at <= location.open_at ? location.close_at + 24.hour : location.close_at)
-    time.between?(location.open_at, closing_time - 1.hour)
+    if location.open_through_midnight?
+      time.between?(location.open_at, "2000-01-01 23:59:00 UTC".to_time) ||
+      time.between?("2000-01-01 00:00:00 UTC".to_time, location.close_at)
+    else
+      time.between?(location.open_at, location.close_at - 1.hour)
+    end
   end
 
 end

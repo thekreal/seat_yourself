@@ -3,8 +3,8 @@
   <div class="restaurant-address"><%= reservation.location.address %></div>
   <div class="reservation-details">
     <small>For</small> <%= pluralize(reservation.number_of_people, 'person') %>
-    <small>on</small> <%= reservation.datetime %>
-    <small>at</small><%= reservation.reserved_time %>
+    <small>at</small> <%= reservation.reserved_time %>
+    <small>on</small><%= reservation.reserved_date %>
   </div>
   <div class="controls">
     <%= link_to 'Modify', edit_reservation_path(reservation, location_id: reservation.location_id), class: "control" %>

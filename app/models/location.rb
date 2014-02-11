@@ -18,7 +18,15 @@ class Location < ActiveRecord::Base
                               }
 
   def operation_hours
-    ((close_at.to_time - open_at.to_time) / 3600).to_i
+    ((add_a_day_if_open_through_midnight - open_at.to_time) / 3600).to_i
+  end
+
+  def add_a_day_if_open_through_midnight
+    open_through_midnight? ? close_at + 1.day : close_at
+  end
+
+  def open_through_midnight?
+    close_at.to_time <= open_at.to_time
   end
 
   def open_hours
