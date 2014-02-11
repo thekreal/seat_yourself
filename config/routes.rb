@@ -12,9 +12,9 @@ SeatYourself::Application.routes.draw do
   resources :restaurant_owners
 
   resources :restaurants do
-    resources :locations
+    resources :locations do
+      resources :reservations,  except: [:index]
+    end
   end
-
-  resources :reservations,  except: [:index]
 
 end
