@@ -10,11 +10,22 @@ class Reservation < ActiveRecord::Base
   # scope :past, -> { where("date < :today ? OR (date == :today AND time <= :time)", { today: Date.today, time: Time.now.strftime("%I:%M %p").to_time)  }) }
   validates :number_of_people, numericality: { only_integer: true }
 
+  validate :datetime_validations
+
   validate :valid_number_of_people
   validate :valid_time
   validate :valid_date
   validate :valid_date_time
   validate :full?
+
+  attr_accessor :date, :time
+
+
+
+
+
+
+
 
 
   # Generate an array of operation hours for the location
@@ -69,6 +80,12 @@ private
     end
   end
 
+  def datetime_validations
+    if datetime.blank?
+      errors[:base] << "So when are you coming?"
+    elsif !within_open_hours?
+  end
+
   def valid_time
     if time.blank?
       errors[:base] << "So when are you coming?"
@@ -91,19 +108,8 @@ private
     end
   end
 
-  # def time_past?
-  #   date.past? || (date.today? && time.strftime("%I:%M %p").to_time.past?)
-  # end
-
   def within_open_hours?
-    # Time column has the same dummy date 2000-01-01
-    # therefore, if the closing time is smaller than the open time,
-    # example: Open at 10AM and Close at 12AM ,
-    # then the closing time should add 1 day in order to make
-    # the validation condition valid, test code below
-    # => ("2000-01-01 23:00:00 UTC".to_time - location.open_at) / 3600
-    # => ("2000-01-01 00:00:00 UTC".to_time - location.open_at) / 3600
-    # => ("2000-01-01 02:00:00 UTC".to_time - location.open_at) / 3600
+
     closing_time = (location.close_at <= location.open_at ? location.close_at + 24.hour : location.close_at)
     time.between?(location.open_at, closing_time - 1.hour)
   end
