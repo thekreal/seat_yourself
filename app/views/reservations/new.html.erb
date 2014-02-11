@@ -22,7 +22,7 @@
   <div class="form-field">
     <%= f.label "Available Hours", class: "form-label", for: "time"  %>
     <div class="form-controls">
-      <%= f.select :time, options_for_select(@reservation.available_hour,
+      <%= f.select :time, options_for_select(@reservation.available_hours,
           selected: (params[:reservation].nil? ? [] : params[:reservation][:time])) %>
     </div>
   </div>

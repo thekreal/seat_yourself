@@ -6,24 +6,21 @@ class Reservation < ActiveRecord::Base
   has_one :restaurant, through: :location
 
   default_scope { order(time: :desc, created_at: :desc)}
-  # scope :upcoming, -> { where("date >", Date.today)  }
-  # scope :past, -> { where("date < :today ? OR (date == :today AND time <= :time)", { today: Date.today, time: Time.now.strftime("%I:%M %p").to_time)  }) }
   validates :number_of_people, numericality: { only_integer: true }
 
-  validate :datetime_validations
+  def available_hours
+    available_hours = []
+    location.operation_hours.times do |i|
+      available_hours << (location.open_at + i.hour).strftime("%I:%M%p")
+    end
+    return available_hours
+  end
 
   validate :valid_number_of_people
   validate :valid_time
   validate :valid_date
   validate :valid_date_time
   validate :full?
-
-  attr_accessor :date, :time
-
-
-
-
-
 
 
 
@@ -80,11 +77,7 @@ private
     end
   end
 
-  def datetime_validations
-    if datetime.blank?
-      errors[:base] << "So when are you coming?"
-    elsif !within_open_hours?
-  end
+
 
   def valid_time
     if time.blank?
