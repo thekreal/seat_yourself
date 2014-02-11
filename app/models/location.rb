@@ -3,7 +3,7 @@ class Location < ActiveRecord::Base
   belongs_to :restaurant
 
   has_many :reservations
-  has_many :reserved_users, through: :reservations, source: 'user'
+  has_many :reserved_members, through: :reservations, source: 'member'
 
   validates :address, presence: true
 

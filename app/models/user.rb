@@ -3,9 +3,6 @@ class User < ActiveRecord::Base
   # Bcrypt Password Digest Encryption
   has_secure_password
 
-  has_many :reservations
-  has_many :reserved_restaurants, through: :reservations, source: "restaurant"
-
   #  Callbacks and Validations
   before_save { email.downcase! }
   before_create :generate_token

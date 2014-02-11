@@ -5,17 +5,17 @@ class Permission
   end
 
   def access_grant?(controller, action)
-    if @user.nil?     # Guest Permission
+    # if @user.nil?     # Guest Permission
 
 
 
-    elsif @user.customer?
+    # elsif @user.customer?
 
-    elsif @user.restaurant_owner?
+    # elsif @user.restaurant_owner?
 
-    else
+    # else
 
-    end
+    # end
   end
 
 end
