@@ -12,12 +12,12 @@
   <div class="location-controls">
   <% if signed_in?  &&  current_user.type == "Member" %>
     <%= link_to 'Make a reservation', new_location_reservation_path(location.id), class: "btn" %>
-    <%= link_to 'Delete this location', location, confirm: "Are you sure you want to remove this location", method: :delete, class: 'btn' %>
   <% elsif !signed_in?  &&  current_user.type == "Member"%>
     <p>Please <%= link_to 'Sign In', :member_signin, class: "btn" %> to make an reservation</p>
   <% end %>
 
   <% if signed_in?  &&  current_user.type == "RestaurantOwner" %>
+    <%= link_to 'edit location', edit_location_path(id: location.id), class: 'btn' %>
     <%= link_to 'Delete this location', location, confirm: "Are you sure you want to remove this location", method: :delete, class: 'btn' %>
     <% end %>
   </div>
