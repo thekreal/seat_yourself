@@ -1,0 +1,33 @@
+$logo:        rgba(147, 189, 199, 1);
+$white:       rgba(255, 255, 255, 1);
+$shadow:      rgba(60, 60, 60, 0.5);
+
+.restaurant-profile {
+  padding: 10px;
+  position: relative;
+
+  .title {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: rgba(80, 80, 80, 1);
+    margin-bottom: 20px;
+  }
+  .description {
+    font-size: 0.9em;
+    color: $logo - 50;
+  }
+
+  .control {
+    font-size: 0.8em;
+    position: relative;
+    top: -7px!important;
+    &:hover { background: $logo - 50!important; }
+  }
+
+  &:hover {
+    background: $logo;
+    opacity: 0.5;
+    .title { color: rgba(60, 60, 60, 1); }
+    .description { color: $logo - 100; }
+  }
+}

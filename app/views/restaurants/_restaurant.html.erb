@@ -1,4 +1,6 @@
 <div class="restaurant-profile">
-  <h1><%= restaurant.name %></h1>
-  <p><%= restaurant.description %></p>
+  <%= link_to "View Page", restaurant, class: "control" %>
+  <div class="title"><%= restaurant.name %></div>
+  <div class="description"><%= restaurant.description %></div>
+
 </div>
