@@ -1,8 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  include Session
+  delegate :access_grant?, to: :permission
 
-  helper_method :current_user, :current_user?, :signed_in?
+  include Authorization, Session
+  helper_method :access_grant?, :current_user, :current_user?, :signed_in?
+
 
 end
