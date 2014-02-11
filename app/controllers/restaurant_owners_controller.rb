@@ -25,7 +25,7 @@ class RestaurantOwnersController < ApplicationController
   def update
     if @user.update(owner_params)
       signin @user
-      flahs[:success] = "You account has been updated successfully"
+      flash[:success] = "You account has been updated successfully"
       redirect_to @user
     else
       render :edit
