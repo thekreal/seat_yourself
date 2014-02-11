@@ -2,53 +2,17 @@
 
 <div class="container">
 
-  <div class="background-wrapper">
-    <div class="user-profile">
-      <div class="gravatar"><%= image_tag @user.gravatar(160) %></div>
-      <div class="name"><%= @user.name %></div>
+  <!-- Renders 'members/_member.html.erb' -->
+  <%= render @user %>
 
-      <div class="email"><%= @user.email %></div>
-      <div class="joined"><%= since(@user.created_at) %></div>
+  <div id="user-reservations" class="feeds">
+    <h1>Upcoming Reservation</h1>
 
-      <% if current_user?(@user) %>
-      <%= link_to 'Edit', edit_user_path(@user), class: "control" %>
-      <%= link_to 'Delete', @user, method: :delete, class: "control",
-          confirm: "Are you sure you want to delete your account?" %>
-      <% end %>
-    </div>
-  </div>
+    <% @user.reservations.each do |reservation| %>
 
-<div class="user-reservations">
-  <h1>Upcoming Reservations</h1>
-  <% @reservations.each do |r| %>
+      <!-- Render reservations/_reservations.html.erb -->
+      <%= render reservation %>
 
-    <div class="reservation">
-      <div class="restaurant-name"><%= r.restaurant.name %></div>
-      <div class="restaurant-address"><%= r.location.address %></div>
-      <div class="reservation-details">
-        For <%= pluralize(r.number_of_people, 'person') %>
-        on <%= r.date %>
-        at <%= r.reserved_time %>
-      </div>
-    </div>
-
-
-
-  <% end %>
-</div>
-
-<h2>Your Reservations</h2>
-	<% @reservations.each do |reservation| %>
-		<h3><%= reservation.location.restaurant.name %></h3>
-			<p><%= reservation.location.address %></p>
-			<p>
-				For <%= reservation.number_of_people %> people at <%= formatted_time(reservation.time) %>
-			</p>
-			<p>
-				<%= link_to "Cancel this reservation", restaurant_location_reservation_path(reservation.location.restaurant_id, reservation.location_id, reservation.id), :confirm => "are you sure you want to cancel this reservation?", :method => :delete %>
-			</p>
-      <p> <%= link_to "Edit this reservation", edit_restaurant_location_reservation_path(reservation.location.restaurant_id, reservation.location_id, reservation.id) %> </p>
-	<% end %>
-
-</div>
+    <% end %>
+  </div>s
 

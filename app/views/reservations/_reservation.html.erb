@@ -1,0 +1,14 @@
+<div class="reservation">
+  <div class="restaurant-name"><%= reservation.restaurant.name %></div>
+  <div class="restaurant-address"><%= reservation.location.address %></div>
+  <div class="reservation-details">
+    <small>For</small> <%= pluralize(reservation.number_of_people, 'person') %>
+    <small>on</small> <%= reservation.date %>
+    <small>at</small><%= reservation.reserved_time %>
+  </div>
+  <div class="controls">
+    <%= link_to 'Modify', reservation, class: "control" %>
+    <%= link_to 'Cancel', reservation, method: :delete, class: "control",
+        confirm: "You are about to cancel this reservation! You sure?" %>
+  </div>
+</div>
