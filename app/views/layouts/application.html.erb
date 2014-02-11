@@ -14,9 +14,11 @@
 
   <%= yield %>
 
-  <footer style="margin: 60px; text-align: center;">
+  <div style="margin: 60px; text-align: center;">
     <%= params %>
-  </footer>
+  </div>
+
+  <%= render 'layouts/footer' %>
 
 </body>
 </html>
