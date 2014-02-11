@@ -47,4 +47,19 @@ $shadow:      rgba(60, 60, 60, 0.5);
   width: 300px;
   display: block;
   margin-top: 10px;
+
+  .btn {
+    position: relative;
+    left: -7px;
+    border-radius: 3px;
+    padding: 5px;
+    display: inline-block;
+    text-decoration: none;
+    color: $logo - 50;
+    margin: 5px 0px;
+    &:hover {
+      background: $logo - 50!important;
+      color: rgba(255, 255, 255, 1);
+    }
+  }
 }
