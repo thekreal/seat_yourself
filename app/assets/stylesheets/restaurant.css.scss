@@ -2,32 +2,26 @@ $logo:        rgba(147, 189, 199, 1);
 $white:       rgba(255, 255, 255, 1);
 $shadow:      rgba(60, 60, 60, 0.5);
 
-#locations {
+.restaurant-profile {
+  padding: 10px;
   position: relative;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  margin: 60px auto 10px;
-  padding: 20px;
-  min-width: 400px;
-  width: 98%;
-  border: 1px solid $logo + 20;
-  background: $white;
-  box-shadow: 0 0 6px -1px $shadow;
+  margin-bottom: 20px;
 
-  legend {
-    position: absolute;
-    top: -30px;
-    right: -1px;
-    padding: 5px 20px;
-    background: $logo;
-    color: $white;
-    font-weight: 900;
+  .title {
     font-size: 1.2em;
+    font-weight: 700;
+    color: rgba(80, 80, 80, 1);
+    margin-bottom: 20px;
+  }
+  .description {
+    font-size: 0.9em;
+    color: $logo - 50;
   }
 
   .control {
     position: relative;
     top: -10px;
+    float: right;
     margin: 5px;
     padding: 5px;
     border: 1px solid $logo + 100;
@@ -40,11 +34,11 @@ $shadow:      rgba(60, 60, 60, 0.5);
       color: rgba(255, 255, 255, 1);
     }
   }
-}
 
-
-.location {
-  width: 300px;
-  display: block;
-  margin-top: 10px;
+  &:hover {
+    background: $logo;
+    opacity: 0.5;
+    .title { color: rgba(60, 60, 60, 1); }
+    .description { color: $logo - 100; }
+  }
 }

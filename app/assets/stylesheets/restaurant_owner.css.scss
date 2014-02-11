@@ -1,0 +1,41 @@
+$logo:        rgba(147, 189, 199, 1);
+$white:       rgba(255, 255, 255, 1);
+$shadow:      rgba(60, 60, 60, 0.5);
+
+#user-restaurants.feeds {
+  display: inline-block;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 15px;
+  width: calc(100% - 220px);
+  background: rgba(255, 255, 255, 1);
+
+  .control {
+    position: relative;
+    top: -10px;
+    float: right;
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid $logo + 100;
+    border-radius: 3px;
+    background: $white;
+    color: rgba(200, 200, 200, 1);
+    text-decoration: none;
+    &:hover {
+      background: $logo;
+      color: rgba(255, 255, 255, 1);
+    }
+  }
+
+  legend {
+    font-size: 1.5em;
+    font-weight: 900;
+    margin-bottom: 20px;
+  }
+
+
+}
+
+@media all and (max-width: 600px) {
+  #user-restaurants.feeds { width: 100%; }
+}

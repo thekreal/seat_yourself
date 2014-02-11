@@ -5,8 +5,10 @@
   <!-- Renders 'members/_member.html.erb' -->
   <%= render @user, user: @user %>
 
-  <div id="user-reservations" class="feeds">
-    <h1>My Restaurants</h1>
+  <div id="user-restaurants" class="feeds">
+    <%= link_to 'New Restaurant', new_restaurant_path, class: "control" %>
+
+    <legend>MY RESTAURANT</legend>
 
     <% @user.restaurants.each do |restaurant| %>
 
@@ -14,5 +16,5 @@
       <%= render restaurant %>
 
     <% end %>
-  </div>s
+  </div>
 
