@@ -6,7 +6,7 @@ SeatYourself::Application.routes.draw do
   resources :sessions,          only: [:create]
 
   get 'member_signup'   =>      'members#new',           as: :member_signup
-  resources :member
+  resources :members
 
   get 'owner_signup'    =>      'restaurant_owers#new',  as: :owner_signup
   resources :restaurant_owers
@@ -16,6 +16,5 @@ SeatYourself::Application.routes.draw do
   end
 
   resources :reservations,  except: [:index]
-
 
 end
