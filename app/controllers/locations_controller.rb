@@ -1,5 +1,5 @@
 class LocationsController < ApplicationController
-  before_action :set_restaurant
+  before_action :set_restaurant, except: [:show]
   before_action :set_location, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -7,6 +7,7 @@ class LocationsController < ApplicationController
   end
 
   def show
+    @restaurant = @location.restaurant
   end
 
   def new
@@ -17,7 +18,7 @@ class LocationsController < ApplicationController
     @location = @restaurant.locations.new(location_params)
     if @location.save
       flash[:success] = "Location created successfully"
-      redirect_to [@restaurant, @location]
+      redirect_to @location
     else
       render :new
     end
