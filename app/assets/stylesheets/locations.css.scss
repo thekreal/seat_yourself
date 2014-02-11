@@ -44,20 +44,28 @@ $shadow:      rgba(60, 60, 60, 0.5);
 
 
 .location {
-  width: 300px;
+  position: relative;
   display: block;
   margin-top: 10px;
+  width: 280px;
+  margin-right: 10px;
+  .google-map {
+    display: block;
+    margin-bottom: 20px;
+    width: 100%;
+    img { width: 100%; }
 
+  }
   .btn {
-    display: inline-block;
     position: relative;
     left: -7px;
-    border-radius: 3px;
-    padding: 5px;
     display: inline-block;
-    text-decoration: none;
-    color: $logo - 50;
+    display: inline-block;
     margin: 5px 0px;
+    padding: 5px;
+    border-radius: 3px;
+    color: $logo - 50;
+    text-decoration: none;
     &:hover {
       background: $logo - 50!important;
       color: rgba(255, 255, 255, 1);
