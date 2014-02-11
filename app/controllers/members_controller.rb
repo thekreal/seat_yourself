@@ -1,22 +1,19 @@
-class UsersController < ApplicationController
-  before_action :must_signin, except: [:new, :create]
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :must_be_self, except: [:new, :create]
+class MembersController < ApplicationController
+  before_action :find_user, except: [:new, :create]
 
   def show
     @user = current_user
-    @reservations = @user.reservations
   end
 
   def new
-    @user = User.new
+    @user = Member.new
   end
 
   def create
-    @user = User.new(user_params)
+    @user = Member.new(member_params)
     if @user.save
       signin @user
-      flash[:success] = "Account created successfully"
+      flash[:success] = "Thanks for signing up! You can start make reservations"
       redirect_to @user
     else
       render :new
@@ -27,9 +24,9 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update(user_params)
+    if @user.update(member_params)
       signin @user
-      flash[:success] = "Account updated successfully"
+      flash[:success] = "You account has been updated successfully"
       redirect_to @user
     else
       render :edit
@@ -39,33 +36,19 @@ class UsersController < ApplicationController
   def destroy
     if @user.destroy
       signout
-      flash[:success] = "Your account has being removed"
+      flash[:success] = "Sad to see you leave!"
       redirect_to root_path
     end
   end
 
 private
 
-  def must_signin
-    unless signed_in?
-      flash[:warning] = "You are not signed in. Please signin first"
-      redirect_to :signin
-    end
-  end
-
-  def must_be_self
-    unless current_user?(@user)
-      flash[:warning] = "You are not authorized!"
-      redirect_to current_user
-    end
-  end
-
-  def set_user
-    @user = User.find(params[:id])
-  end
-
-  def user_params
+  def member_params
     params.require(:user).permit( :name, :email, :password, :password_confirmation )
+  end
+
+  def find_user
+    @user = Member.find(params[:id])
   end
 
 end
