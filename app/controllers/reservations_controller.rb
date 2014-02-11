@@ -1,5 +1,5 @@
 class ReservationsController <ApplicationController
-  before_action :set_location, only: [:new, :create, :edit, :update]
+  before_action :set_location, only: [:new, :create, :edit]
   before_action :set_reservation, except: [:new, :create,]
   def show
   end

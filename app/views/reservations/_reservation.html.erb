@@ -7,7 +7,7 @@
     <small>at</small><%= reservation.reserved_time %>
   </div>
   <div class="controls">
-    <%= link_to 'Modify', reservation, class: "control" %>
+    <%= link_to 'Modify', edit_reservation_path(location_id: reservation.location_id), class: "control" %>
     <%= link_to 'Cancel', reservation, method: :delete, class: "control",
         confirm: "You are about to cancel this reservation! You sure?" %>
   </div>
