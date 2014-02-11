@@ -11,7 +11,7 @@ SeatYourself::Application.routes.draw do
   get 'owner_signup'    =>      'restaurant_owners#new',  as: :owner_signup
   resources :restaurant_owners
 
-  resources :restaurants do
+  resources :restaurants, shallow: true do
     resources :locations do
       resources :reservations,  except: [:index]
     end
