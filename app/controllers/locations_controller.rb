@@ -37,6 +37,7 @@ class LocationsController < ApplicationController
   end
 
   def destroy
+    @restaurant = @location.restaurant
 
     if @location.destroy
       flash[:success] = "Location removed successfully"
