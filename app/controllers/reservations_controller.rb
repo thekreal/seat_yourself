@@ -10,7 +10,7 @@ class ReservationsController <ApplicationController
 
   def create
     @reservation = @location.reservations.new(reservation_params)
-    @reservation.user_id = current_user.id
+    @reservation.member_id = current_user.id
     if @reservation.save
       redirect_to current_user
     else
