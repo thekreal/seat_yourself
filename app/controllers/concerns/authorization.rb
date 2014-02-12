@@ -5,8 +5,18 @@ module Authorization
     @current_permission ||= Permission.new(current_user)
   end
 
-  def authorized
-    current_permission.access_grant?(params[:controller], params[:action])
+  def current_resource
+    current_model_name = params[:controller].singularize.capitalize
+    params[:id] ? ActiveModel.const_get(current_model_name).find(params[:id]) : nil
   end
+
+  def authorize?
+    current_permission.allow_action?(params[:controller], params[:action], current_resource)
+  end
+
+  def authorize
+    authorize?
+  end
+
 
 end

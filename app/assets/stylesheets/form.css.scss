@@ -3,12 +3,16 @@ $white:       rgba(255, 255, 255, 1);
 $shadow:      rgba(60, 60, 60, 0.5);
 
 .form {
-  margin: 0 auto;
+  display: block;
+  margin: 0px auto;
   padding: 10px;
   width: 80%;
   border-radius: 5px;
-  background: rgba(240, 240, 240, 1);
   max-width: 600px;
+}
+
+@media all and (max-width: 600px) {
+  .form { width: 100%; }
 }
 
 .form-container {
