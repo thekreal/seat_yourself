@@ -5,17 +5,28 @@
   <p>Come on in and grab a seat</p>
 
   <% if signed_in? %>
-    <%= link_to "Find a Restaurant", restaurants_path, class: "btn-inverse" %>
+    <%= link_to "Find a Restaurant", restaurants_path, class: "btn" %>
   <% else %>
-    <p>
       <%= link_to "Show me Restaurants first", restaurants_path, class: "btn-inverse" %>
-    </p>
-    <p>or</p>
-    <p>
-      <%= link_to "Sign In", :signin, class: "btn" %>
-      <%= link_to "Sign Up", :member_signup, class: "btn" %>
-    </p>
-
+      <%= link_to "Sign In to my page", :signin, class: "btn" %>
   <% end %>
+</div>
+
+<div id="member-introduction" class="introduction">
+  <section>
+    <h1>I AM A FOODIE</h1>
+    <p>I would like to find restaurants and make an reservation</p>
+  </section>
+
+  <%= link_to "Sign Up as Member", :member_signup, class: "btn" %>
+</div>
+
+
+<div id="owner-introduction" class="introduction">
+  <section>
+    <h1>I AM AN OWNER</h1>
+    <p>I would like to create a restaurant page and let people make reservations</p>
+  </section>
+  <%= link_to "Sign Up as Restaurant Owner", :owner_signup, class: "btn" %>
 </div>
 

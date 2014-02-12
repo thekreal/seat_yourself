@@ -1,3 +1,4 @@
+@import url("http://www.google.com/fonts#UsePlace:use/Collection:Open+Sans:400,800,700,600,300");
 // VARIABLES
 $logo:        rgba(147, 189, 199, 1);
 $white:       rgba(255, 255, 255, 1);
@@ -61,10 +62,10 @@ $shadow:      rgba(60, 60, 60, 0.5);
 .btn-inverse { @include btn-inverse($logo); }
 .btn-header {
   @include btn($logo - 50);
+  padding: 10px;
   border: none;
   border-radius: 0;
   box-shadow: none;
-  padding: 10px;
   &:focus {
     outline: none;
   }
@@ -93,14 +94,13 @@ header#site-menu {
     @include animation;
     position: relative;
     top: 5px;
-    color: $logo - 50;
-    text-shadow: 1px 0px 5px $shadow + 100;
-    font-size: 1.9em;
-    padding: 1px 5px;
     margin: -1px;
+    padding: 1px 5px;
+    color: $logo - 50;
+    font-size: 1.9em;
     &:hover {
-      color: $white;
       background: $logo - 50;
+      color: $white;
     }
   }
 
@@ -113,13 +113,13 @@ header#site-menu {
     }
     .over-control {
       position: absolute;
-      display: block;
-      color: rgba(255, 255, 255, 1);
-      font-size: 10px;
-      font-weight: 900;
-      background: rgba(40, 40, 40, 0.5);
-      width: 50px;
       top: 40px;
+      display: block;
+      width: 50px;
+      background: rgba(40, 40, 40, 0.5);
+      color: rgba(255, 255, 255, 1);
+      font-weight: 900;
+      font-size: 10px;
     }
   }
 }
@@ -130,7 +130,9 @@ header#site-menu {
   width: 100%;
   background: $logo + 140;
   text-align: center;
-
+  &:hover {
+    background: $logo;
+  }
   h1 {
     margin: 0px;
     color: $logo - 100;
@@ -140,8 +142,41 @@ header#site-menu {
   }
   p {
     margin: 10px 0px 10px;
-    font-size: 1.2em;
     color: $logo;
+    font-size: 1.2em;
   }
+}
 
+.introduction {
+  display: inline-block;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 40px;
+  width: 49%;
+  &:hover {
+    background: $logo;
+  }
+  section {
+    height: 100px;
+    vertical-align: top;
+  }
+  h1 {
+    color: $logo - 70;
+    font-weight: 900;
+    font-size: 2.5em;
+    font-family: "Open Sans";
+    margin-bottom: 10px;
+  }
+  p {
+    color: rgba(80, 80, 80, 1);
+  }
+  .btn {
+    display: inline-block;
+    margin-top: 30px;
+    margin-left: -5px;
+  }
+}
+
+#member-introduction {
+  text-align: right;
 }
