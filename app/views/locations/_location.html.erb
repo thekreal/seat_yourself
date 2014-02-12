@@ -8,6 +8,9 @@
   <div class="location-hour">
     <p><%= location.open_hours %></p>
   </div>
+  <div>
+    <p> Seating capacity:<%= location.number_of_seats %></p>
+  </div>
 
   <div class="location-controls">
   <% if signed_in?  &&  current_user.type == "Member" %>

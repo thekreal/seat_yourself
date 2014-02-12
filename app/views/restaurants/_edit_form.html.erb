@@ -19,6 +19,13 @@
   </div>
 
   <div class="form-field">
+    <%= f.label :cuisine, for: "description", class: "form-label" %>
+    <div class="form-controls">
+      <%= f.text_field :cuisine, id: "description", class: "form-input" %>
+    </div>
+  </div>
+
+  <div class="form-field">
     <div class="form-label"></div>
     <div class="form-controls">
       <%= f.submit yield(:page_title), class: "form-btn" %>

@@ -10,4 +10,10 @@ class Restaurant < ActiveRecord::Base
 
   default_scope { order(created_at: :desc) }
 
+	def self.search(search)
+	  search
+	    find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
+	  else
+	    find(:all)
+	  end
 end

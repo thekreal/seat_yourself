@@ -2,4 +2,6 @@
   <%= link_to "View Page", restaurant, class: "control" %>
   <div class="title"><%= restaurant.name %></div>
   <div class="description"><%= restaurant.description %></div>
+  <div><%= link_to "Add a new location for this restaurant", new_restaurant_location_path(restaurant) %></div>
+  <div><%= link_to "Edit this restaurant", edit_restaurant_path %></div>
 </div>

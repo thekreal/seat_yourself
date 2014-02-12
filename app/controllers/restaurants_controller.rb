@@ -2,7 +2,7 @@ class RestaurantsController < ApplicationController
   before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
 
   def index
-    @restaurants = Restaurant.all
+    @restaurants = Restaurant.search(params[:search])
   end
 
   def show
@@ -57,7 +57,7 @@ private
   end
 
   def edit_restaurant_params
-    params.require(:restaurant).permit( :name, :description )
+    params.require(:restaurant).permit( :name, :description, :cuisine )
   end
 
 end
