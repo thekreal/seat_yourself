@@ -1,0 +1,147 @@
+// VARIABLES
+$logo:        rgba(147, 189, 199, 1);
+$white:       rgba(255, 255, 255, 1);
+$shadow:      rgba(60, 60, 60, 0.5);
+
+// MIXINS
+@mixin fixed-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+}
+@mixin fixed-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+}
+
+@mixin animation($property: all, $duration: 0.5s, $function: ease-in-out) {
+  -webkit-transition: $property $duration $function;
+  transition: $property $duration $function;
+}
+
+@mixin btn($color) {
+  @include animation;
+  position: relative;
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid $color;
+  border-radius: 3px;
+  background: $white;
+  box-shadow: 0 0 4px -2px $shadow;
+  color: $color;
+  text-decoration: none;
+  font-size: 700;
+  &:hover {
+    border: 0 0 4px -2px $logo - 50;
+    background: $logo - 50;
+    color: $white;
+  }
+}
+
+@mixin btn-inverse($color) {
+  @include animation;
+  @include btn($logo);
+  border-color: $color - 100;
+  background: $color;
+  box-shadow: 0 0 4px -2px $shadow;
+  color: $color + 200;
+  &:hover {
+    border: 0 0 4px -2px $logo - 50;
+    background: $logo - 50;
+    color: $white;
+  }
+}
+
+.btn { @include btn($logo - 50); }
+.btn-inverse { @include btn-inverse($logo); }
+.btn-header {
+  @include btn($logo - 50);
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 10px;
+  &:focus {
+    outline: none;
+  }
+}
+
+
+
+// GENERAL HTML ELEMENTS
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+body { margin-top: 100px; }
+a { text-decoration: none; }
+
+// HEADER PARTIALS
+header#site-menu {
+  @include fixed-top;
+  padding: 0px 20px;
+  height: 40px;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 0 6px -2px $shadow;
+  font-family: "Open Sans";
+
+  #site-logo {
+    @include animation;
+    position: relative;
+    top: 5px;
+    color: $logo - 50;
+    text-shadow: 1px 0px 5px $shadow + 100;
+    font-size: 1.9em;
+    padding: 1px 5px;
+    margin: -1px;
+    &:hover {
+      color: $white;
+      background: $logo - 50;
+    }
+  }
+
+  #menu {
+    position: relative;
+    float: right;
+    .btn-header {
+      position: relative;
+      top: 10px;
+    }
+    .over-control {
+      position: absolute;
+      display: block;
+      color: rgba(255, 255, 255, 1);
+      font-size: 10px;
+      font-weight: 900;
+      background: rgba(40, 40, 40, 0.5);
+      width: 50px;
+      top: 40px;
+    }
+  }
+}
+
+// WELCOME
+#welcome {
+  padding: 40px;
+  width: 100%;
+  background: $logo + 140;
+  text-align: center;
+
+  h1 {
+    margin: 0px;
+    color: $logo - 100;
+    letter-spacing: -1px;
+    font-weight: 900;
+    font-size: 3em;
+  }
+  p {
+    margin: 10px 0px 10px;
+    font-size: 1.2em;
+    color: $logo;
+  }
+
+}

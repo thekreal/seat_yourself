@@ -3,11 +3,11 @@
 
   <div id="menu">
   <% if signed_in? %>
-    <%= link_to image_tag(current_user.gravatar(60)), current_user %>
-    <%= link_to "SIGN OUT", :signout, id: "signout" %>
+    <%= link_to image_tag(current_user.gravatar(50)), current_user %>
+    <%= link_to "SIGN OUT", :signout, class: "over-control" %>
   <% else %>
-    <%= link_to 'Sign In', :signin, id: "signin", class: "btn" %>
-    <%= link_to 'Member Sign Up', :member_signup, id: "signup", class: "btn" %>
+    <%= link_to 'Sign In', :signin, id: "signin", class: "btn-header" %>
+    <%= link_to 'Member Sign Up', :member_signup, id: "signup", class: "btn-header" %>
   <% end %>
   </div>
 

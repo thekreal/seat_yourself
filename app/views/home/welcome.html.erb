@@ -1,18 +1,20 @@
 <% provide :page_title, "WELCOME" %>
 
 <div id="welcome">
-  <h1>WELCOME</h1>
   <h1><%= site_name %></h1>
   <p>Come on in and grab a seat</p>
 
   <% if signed_in? %>
-    <%= link_to "Find a Restaurant", restaurants_path, class: "btn" %>
+    <%= link_to "Find a Restaurant", restaurants_path, class: "btn-inverse" %>
   <% else %>
-
-    <%= link_to "Show me Restaurants first", restaurants_path, class: "btn" %>
+    <p>
+      <%= link_to "Show me Restaurants first", restaurants_path, class: "btn-inverse" %>
+    </p>
     <p>or</p>
-    <%= link_to "Sign In", :signin, class: "btn" %>
-    <%= link_to "Sign Up", :member_signup, class: "btn" %>
+    <p>
+      <%= link_to "Sign In", :signin, class: "btn" %>
+      <%= link_to "Sign Up", :member_signup, class: "btn" %>
+    </p>
 
   <% end %>
 </div>
