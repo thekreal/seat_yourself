@@ -15,7 +15,10 @@ module Authorization
   end
 
   def authorize
-    authorize?
+    if !authorize?
+      flash[:info] = "You are not authorized"
+      redirect_to :signin
+    end
   end
 
 

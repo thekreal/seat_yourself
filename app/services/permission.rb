@@ -1,12 +1,16 @@
 class Permission
 
   def initialize(user)
+    allow :home,                [:welcome]
     allow :members,             [:new, :create]
     allow :owners,              [:new, :create]
     allow :sessions,            [:new, :create, :destroy]
     allow :restaurants,         [:index, :show]
     if user && user.type == "Member"
-      allow :members,           [:show, :edit, :update]
+      allow :members,           [:show]
+      allow :members,           [:edit, :update] do |member|
+        member.id == user.id
+      end
       allow :reservations,      [:new, :create, :edit, :update, :destroy]
     elsif user && user.type == "RestaurantOwner"
       allow :restaurant_owners, [:show, :edit, :update]
